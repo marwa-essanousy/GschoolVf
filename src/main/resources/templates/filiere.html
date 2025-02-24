@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestion des Filières</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Barre de navigation */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contenu principal */
+        .container {
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .actions a {
+            margin-right: 10px;
+        }
+
+        .actions a:last-child {
+            margin-right: 0;
+        }
+
+        .add-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .add-button:hover {
+            background-color: #218838;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<!-- Barre de navigation -->
+<nav>
+    <div>
+        <a href="/">Accueil</a>
+        <a href="/filieres">Filières</a>
+        <a href="/etudiants">Étudiants</a>
+    </div>
+    <div>
+        <a href="/connexion">Connexion</a>
+
+    </div>
+</nav>
+
+<!-- Contenu principal -->
+<div class="container">
+    <h1>Liste des Filières</h1>
+    <a class="add-button" th:href="@{/filieres/add}">Ajouter une Filière</a>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="filiere : ${filieres}">
+            <td th:text="${filiere.id}"></td>
+            <td th:text="${filiere.nom}"></td>
+            <td th:text="${filiere.description}"></td>
+            <td class="actions">
+                <a th:href="@{/filieres/edit/{id}(id=${filiere.id})}">Modifier</a>
+                <a th:href="@{/filieres/delete/{id}(id=${filiere.id})}">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

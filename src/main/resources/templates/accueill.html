@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Barre de navigation */
+        nav {
+            background-color: #007bff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section d'introduction */
+        .hero {
+            background-color: #007bff;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Contenu principal */
+        .container {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .feature {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1 1 300px;
+        }
+
+        .feature h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .feature p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<!-- Barre de navigation -->
+<nav>
+    <div>
+        <a href="/">Accueil</a>
+        <a href="/filieres">Filières</a>
+        <a href="/etudiants">Étudiants</a>
+    </div>
+    <div>
+        <a href="/connexion">Connexion</a>
+    </div>
+</nav>
+
+<!-- Section d'introduction -->
+<section class="hero">
+    <h1>Bienvenue sur la plateforme de gestion des filières</h1>
+    <p>
+        Gérez facilement les filières, les étudiants et les inscriptions grâce à notre outil intuitif et performant.
+    </p>
+</section>
+
+<!-- Contenu principal -->
+<div class="container">
+    <div class="features">
+        <div class="feature">
+            <h2>Gestion des Filières</h2>
+            <p>
+                Ajoutez, modifiez ou supprimez des filières en quelques clics.
+            </p>
+        </div>
+        <div class="feature">
+            <h2>Gestion des Étudiants</h2>
+            <p>
+                Inscrivez et suivez les étudiants dans leurs parcours académiques.
+            </p>
+        </div>
+        <div class="feature">
+            <h2>Rapports et Statistiques</h2>
+            <p>
+                Consultez des rapports détaillés pour une meilleure prise de décision.
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Pied de page -->
+<footer>
+    <p>&copy; 2023 Gestion des Filières. Tous droits réservés.</p>
+    <p><a href="/contact">Contactez-nous</a></p>
+</footer>
+</body>
+</html>

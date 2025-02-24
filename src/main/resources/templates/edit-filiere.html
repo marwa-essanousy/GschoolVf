@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Gestion des Filières</title>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Barre de navigation */
+        nav {
+            background-color: #2c3e50;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contenu principal */
+        .container {
+
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto; /* Ajout de margin-top pour l'espace entre nav et container */
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Styles pour les boutons */
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            font-size: 16px;
+            color: white;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #218838;
+        }
+
+        .button-secondary {
+            background-color: #6c757d;
+        }
+
+        .button-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .button-danger {
+            background-color: #dc3545;
+        }
+
+        .button-danger:hover {
+            background-color: #c82333;
+        }
+
+        /* Styles pour les formulaires */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Styles pour les messages */
+        .message {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .message-success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .message-error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Styles pour la table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .actions a {
+            margin-right: 10px;
+        }
+
+        .actions a:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+<!-- Barre de navigation -->
+<nav>
+    <div>
+        <a href="/">Accueil</a>
+        <a href="/filieres">Filières</a>
+        <a href="/etudiants">Étudiants</a>
+    </div>
+    <div>
+        <a href="/connexion">Connexion</a>
+
+    </div>
+</nav>
+
+<!-- Contenu principal -->
+<div class="container">
+    <h1>Modifier une Filière</h1>
+    <form th:action="@{/filieres/update/{id}(id=${filiere.id})}" method="post">
+        <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" name="nom" th:value="${filiere.nom}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" th:text="${filiere.description}" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="button">Mettre à jour</button>
+            <a href="/filieres" class="button button-secondary">Retour</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
