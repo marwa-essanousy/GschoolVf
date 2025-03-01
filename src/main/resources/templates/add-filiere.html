@@ -30,7 +30,7 @@
         }
 
         nav a:hover {
-            color: #1abc9c;
+            text-decoration: underline;
         }
 
         /* Contenu principal */
@@ -110,10 +110,14 @@
 <!-- Barre de navigation -->
 <nav>
     <div>
-        <a th:href="@{/}">Accueil</a>
-        <a th:href="@{/filieres}">Filières</a>
+        <a href="/">Accueil</a>
+        <a href="/filieres">Filières</a>
+        <a href="/etudiants">Étudiants</a>
     </div>
-    <a th:href="@{/connexion}">Connexion</a>
+    <div>
+        <a href="/connexion">Connexion</a>
+
+    </div>
 </nav>
 
 <!-- Contenu principal -->

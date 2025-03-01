@@ -1,28 +1,44 @@
 package org.example.gschool.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "etudiant")
+@Table(name = "etudiants")
 public class Etudiant {
     @Id
-    @Column(name = "id_etudiant", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "nom", nullable = false)
+    @Column(name = "nom", nullable = false, length = 100)
     private String nom;
 
-    @Column(name = "prenom", nullable = false)
+    @Column(name = "prenom", nullable = false, length = 100)
     private String prenom;
 
-    @Column(name = "date_naissance", nullable = false)
+    @Column(name = "email", nullable = false, length = 150)
+    private String email;
+
+    @Column(name = "date_naissance")
     private LocalDate dateNaissance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_filiere")
-    private Filiere idFiliere;
+    @JsonIgnore // This prevents lazy-loaded associations from being serialized
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "filiere_id")
+    private Filiere filiere;
+
+    @Column(name = "code_etudiant", nullable = false, length = 20)
+    private String codeEtudiant;
+
+    @Column(name = "photo")
+    private String photo;
 
     public Integer getId() {
         return id;
@@ -48,6 +64,14 @@ public class Etudiant {
         this.prenom = prenom;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public LocalDate getDateNaissance() {
         return dateNaissance;
     }
@@ -56,12 +80,28 @@ public class Etudiant {
         this.dateNaissance = dateNaissance;
     }
 
-    public Filiere getIdFiliere() {
-        return idFiliere;
+    public Filiere getFiliere() {
+        return filiere;
     }
 
-    public void setIdFiliere(Filiere idFiliere) {
-        this.idFiliere = idFiliere;
+    public void setFiliere(Filiere filiere) {
+        this.filiere = filiere;
+    }
+
+    public String getCodeEtudiant() {
+        return codeEtudiant;
+    }
+
+    public void setCodeEtudiant(String codeEtudiant) {
+        this.codeEtudiant = codeEtudiant;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
 }
