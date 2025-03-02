@@ -7,7 +7,9 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "filiere")
 public class Filiere {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-génère l'ID
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -16,10 +18,11 @@ public class Filiere {
     private String description;
 
     @Size(max = 255)
-    @NotNull
+    @NotNull(message = "Le nom de la filière est obligatoire")
     @Column(name = "nom", nullable = false)
     private String nom;
 
+    // Getters et Setters
     public Integer getId() {
         return id;
     }
@@ -43,5 +46,4 @@ public class Filiere {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
 }

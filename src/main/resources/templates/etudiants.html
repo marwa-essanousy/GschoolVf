@@ -102,6 +102,14 @@
         .actions a:hover {
             text-decoration: underline;
         }
+
+        /* Style pour les images */
+        .photo-cell img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
     </style>
 </head>
 <body>
@@ -113,7 +121,7 @@
         <a href="/etudiants">Étudiants</a>
     </div>
     <div>
-        <a href="/connexion">Connexion</a>
+        <a href="/login">Connexion</a>
     </div>
 </nav>
 
@@ -125,18 +133,29 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Code Etudiant</th>
             <th>Nom</th>
             <th>Prénom</th>
+            <th>Email</th>
             <th>Date de Naissance</th>
+            <th>Filiere</th>
+            <th>Photo</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="etudiant : ${etudiants}">
             <td th:text="${etudiant.id}"></td>
+            <td th:text="${etudiant.codeEtudiant}"></td>
             <td th:text="${etudiant.nom}"></td>
             <td th:text="${etudiant.prenom}"></td>
-            <td th:text="${etudiant.dateNaissance}"></td>
+            <td th:text="${etudiant.email}"></td>
+            <td th:text="${#temporals.format(etudiant.dateNaissance, 'yyyy-MM-dd')}"></td>
+            <td th:text="${etudiant.filiere.nom}"></td>
+            <td class="photo-cell">
+                <img th:if="${etudiant.photo}" th:src="@{'/uploads/' + ${etudiant.photo}}" alt="Photo de l'étudiant">
+                <span th:unless="${etudiant.photo}">Aucune photo</span>
+            </td>
             <td class="actions">
                 <a th:href="@{/etudiants/update/{id}(id=${etudiant.id})}">Modifier</a>
                 <a th:href="@{/etudiants/delete/{id}(id=${etudiant.id})}">Supprimer</a>
