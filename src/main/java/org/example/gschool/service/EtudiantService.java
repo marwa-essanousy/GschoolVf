@@ -36,4 +36,6 @@ public class EtudiantService {
         etudiantRepository.deleteById(id);
     }
 
+    public List<Etudiant> searchEtudiants(String name, String email, String code, String sort) {
+        return etudiantRepository.searchEtudiants(name, email, code,sort);}
 }

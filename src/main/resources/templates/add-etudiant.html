@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire Étudiant</title>
+    <title>Formulaire Étudiant</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,50 +11,50 @@
             padding: 0;
             background-color: #f4f4f9;
             color: #333;
-        }
-
-        /* Barre de navigation */
-        nav {
-            background-color: #4CAF50;
-            padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        nav a {
+        /* Sidebar */
+        .sidebar {
+            position: fixed; /* Ajoutez cette ligne */
+            top: 0; /* Ajoutez cette ligne */
+            left: 0; /* Ajoutez cette ligne */
+            width: 250px;
+            background-color: #4CAF50;
+            padding: 20px;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            height: 100vh; /* Modifiez cette ligne */
+        }
+
+
+        .sidebar a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
             font-size: 16px;
         }
-        nav a:hover {
-            text-decoration: underline;
+
+        .sidebar a:hover {
+            background-color: #45a049;
+            border-radius: 5px;
         }
 
         /* Contenu principal */
         .container {
-            max-width: 1200px;
-            margin: 20px auto;
+            flex: 1;
             padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
-        h1 {
-            color: #4CAF50;
-            text-align: center;
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-             /* Style général du formulaire */
-         .form-container {
-             max-width: 600px;
-             margin: 50px auto;
-             padding: 20px;
-             background-color: #fff;
-             border-radius: 8px;
-             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-         }
 
         .form-container h2 {
             text-align: center;
@@ -135,61 +135,57 @@
             border-radius: 4px;
         }
     </style>
-
-
 </head>
 <body>
-<nav>
-    <div>
-        <a href="/">Accueil</a>
-        <a href="/filieres">Filières</a>
-        <a href="/etudiants">Étudiants</a>
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="/">Accueil</a>
+    <a href="/filieres">Filières</a>
+    <a href="/etudiants">Étudiants</a>
+    <a href="/login">Connexion</a>
+</div>
+
+<!-- Contenu principal -->
+<div class="container">
+    <div class="form-container">
+        <h2>Ajouter un Étudiant</h2>
+        <form th:object="${etudiant}" th:action="@{/etudiants/add}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="codeEtudiant">Code Étudiant :</label>
+                <input type="text" id="codeEtudiant" name="codeEtudiant" placeholder="Entrez le code étudiant" required>
+            </div>
+            <div class="form-group">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" placeholder="Entrez le nom" required>
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Entrez le prénom" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" placeholder="Entrez l'email" required>
+            </div>
+            <div class="form-group">
+                <label for="date_naissance">Date de naissance :</label>
+                <input type="date" id="date_naissance" name="dateNaissance" required>
+            </div>
+            <div class="form-group">
+                <label for="photoFile">Photo :</label>
+                <input type="file" id="photoFile" name="photoFile" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="filiere">Filière :</label>
+                <select id="filiere" name="filiereId" required>
+                    <option value="" disabled selected>Choisir une filière</option>
+                    <option th:each="filiere : ${filieres}" th:value="${filiere.id}" th:text="${filiere.nom}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Ajouter</button>
+            </div>
+        </form>
     </div>
-    <div>
-        <a href="/login">Connexion</a>
-    </div>
-</nav>
-<div class="form-container">
-    <h2>Ajouter un Étudiant</h2>
-    <form th:object="${etudiant}" th:action="@{/etudiants/add}" method="post">
-        <div class="form-group">
-            <label for="codeEtudiant">Code Étudiant :</label>
-            <input type="text" id="codeEtudiant" name="codeEtudiant" placeholder="Entrez le code étudiant" required>
-        </div>
-        <div class="form-group">
-            <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" placeholder="Entrez le nom" required>
-        </div>
-        <div class="form-group">
-            <label for="prenom">Prénom :</label>
-            <input type="text" id="prenom" name="prenom" placeholder="Entrez le prénom" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" placeholder="Entrez l'email" required>
-        </div>
-        <div class="form-group">
-            <label for="date_naissance">Date de naissance :</label>
-            <input type="date" id="date_naissance" name="dateNaissance" required>
-        </div>
-        <div class="form-group">
-            <label for="photo">Photo :</label>
-            <input type="file" id="photo" name="photo" accept="image/*">
-        </div>
-        <div class="form-group">
-            <label for="filiere">Filière :</label>
-            <select id="filiere" name="filiereId" required>
-                <option value="" disabled selected>Choisir une filière</option>
-                <option th:each="filiere : ${filieres}" th:value="${filiere.id}" th:text="${filiere.nom}"></option>
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-            <button type="submit">Ajouter</button>
-        </div>
-    </form>
 </div>
 </body>
 </html>

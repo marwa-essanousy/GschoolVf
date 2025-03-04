@@ -12,32 +12,40 @@
             padding: 0;
             background-color: #f4f4f9;
             color: #333;
-        }
-
-        /* Barre de navigation */
-        nav {
-            background-color: #4CAF50;
-            padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
-        nav a {
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #4CAF50;
+            height: 100vh; /* Prend toute la hauteur de la page */
+            padding: 20px;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Fixe la sidebar */
+            top: 0;
+            left: 0;
+        }
+
+        .sidebar a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
             font-size: 16px;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        .sidebar a:hover {
+            background-color: #45a049;
+            border-radius: 5px;
         }
 
         /* Contenu principal */
         .container {
+            flex: 1;
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 20px 20px 20px 290px; /* Marge à gauche pour éviter la superposition avec la sidebar */
             padding: 20px;
             background: white;
             border-radius: 8px;
@@ -110,35 +118,84 @@
             border-radius: 50%;
             object-fit: cover;
         }
+
+        /* Formulaire de recherche */
+        .search-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-form input[type="text"],
+        .search-form select {
+            flex: 1;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .search-form input[type="text"]:focus,
+        .search-form select:focus {
+            border-color: #4CAF50;
+        }
+
+        .search-form button[type="submit"] {
+            height: 40px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .search-form button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
     </style>
 </head>
 <body>
-<!-- Barre de navigation -->
-<nav>
-    <div>
-        <a href="/">Accueil</a>
-        <a href="/filieres">Filières</a>
-        <a href="/etudiants">Étudiants</a>
-    </div>
-    <div>
-        <a href="/login">Connexion</a>
-    </div>
-</nav>
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="/">Accueil</a>
+    <a href="/filieres">Filières</a>
+    <a href="/etudiants">Étudiants</a>
+    <a href="/login">Connexion</a>
+</div>
 
 <!-- Contenu principal -->
 <div class="container">
     <h1>Liste des Étudiants</h1>
     <a href="/etudiants/add" class="button">Ajouter un Étudiant</a>
+    <form class="search-form" th:action="@{/etudiants/search}" method="get">
+        <input type="text" name="name" placeholder="Nom">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="code" placeholder="Code étudiant">
+        <select name="sort">
+            <option value="">Aucun</option>
+            <option value="nom">Nom</option>
+            <option value="nom_desc">Nom (décroissant)</option>
+            <option value="email">Email</option>
+            <option value="email_desc">Email (décroissant)</option>
+            <option value="code">Code étudiant</option>
+            <option value="code_desc">Code étudiant (décroissant)</option>
+        </select>
+        <button type="submit">Rechercher</button>
+    </form>
     <table>
         <thead>
         <tr>
             <th>ID</th>
-            <th>Code Etudiant</th>
+            <th>Code Étudiant</th>
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
             <th>Date de Naissance</th>
-            <th>Filiere</th>
+            <th>Filière</th>
             <th>Photo</th>
             <th>Actions</th>
         </tr>
@@ -153,8 +210,7 @@
             <td th:text="${#temporals.format(etudiant.dateNaissance, 'yyyy-MM-dd')}"></td>
             <td th:text="${etudiant.filiere.nom}"></td>
             <td class="photo-cell">
-                <img th:if="${etudiant.photo}" th:src="@{'/uploads/' + ${etudiant.photo}}" alt="Photo de l'étudiant">
-                <span th:unless="${etudiant.photo}">Aucune photo</span>
+                <img th:src="@{'/etudiants/uploads/' + ${etudiant.photo}}" alt="Photo de l'étudiant" width="50">
             </td>
             <td class="actions">
                 <a th:href="@{/etudiants/update/{id}(id=${etudiant.id})}">Modifier</a>

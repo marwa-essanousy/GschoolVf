@@ -14,33 +14,41 @@
 
         /* Barre de navigation */
         nav {
-            background-color: #2c3e50;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: #4CAF50;
+            padding: 20px;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            height: 100vh;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
-            font-weight: bold;
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
         }
 
         nav a:hover {
-            text-decoration: underline;
+            background-color: #45a049;
+            border-radius: 5px;
         }
 
         /* Contenu principal */
         .container {
             max-width: 600px;
-            margin: 50px auto;
+            margin: 50px auto 50px 290px; /* Marge à gauche pour éviter la superposition avec la barre de navigation */
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center; /* Centrer le contenu horizontalement */
+            flex-direction: column;
         }
 
         h1 {
@@ -53,6 +61,7 @@
         form {
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
 
         label {
@@ -70,6 +79,13 @@
             font-size: 14px;
             width: 100%;
             box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
         }
 
         textarea {
@@ -77,7 +93,14 @@
             height: 100px;
         }
 
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
         button {
+            flex: 1;
             background-color: #1abc9c;
             color: white;
             padding: 12px;
@@ -90,6 +113,14 @@
 
         button:hover {
             background-color: #16a085;
+        }
+
+        button[type="button"] {
+            background-color: #e74c3c;
+        }
+
+        button[type="button"]:hover {
+            background-color: #c0392b;
         }
 
         /* Lien Retour */
@@ -116,7 +147,6 @@
     </div>
     <div>
         <a href="/login">Connexion</a>
-
     </div>
 </nav>
 
@@ -130,9 +160,11 @@
         <label for="description">Description:</label>
         <textarea id="description" th:field="*{description}"></textarea>
 
-        <button type="submit">Enregistrer</button>
+        <div class="button-container">
+            <button type="submit">Enregistrer</button>
+            <button type="button" onclick="window.location.href='/filieres'">Retour</button>
+        </div>
     </form>
-    <a class="back-link" th:href="@{/filieres}">Retour</a>
 </div>
 </body>
 </html>

@@ -1,39 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Gestion des Filières</title>
+    <title>Gestion des Filières</title>
     <style>
-        /* Styles généraux */
+        /* Styles généraux */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-        }
-
-        /* Barre de navigation */
-        nav {
-            background-color: #2c3e50;
-            padding: 10px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        nav a {
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2c3e50;
+            height: 100vh;
+            padding: 20px;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar a {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
             font-weight: bold;
         }
 
-        nav a:hover {
-            text-decoration: underline;
+        .sidebar a:hover {
+            background-color: #34495e;
+            border-radius: 5px;
         }
 
         /* Contenu principal */
         .container {
+            flex: 1;
             padding: 20px;
         }
 
@@ -102,23 +106,18 @@
     </style>
 </head>
 <body>
-<!-- Barre de navigation -->
-<nav>
-    <div>
-        <a href="/">Accueil</a>
-        <a href="/filieres">Filières</a>
-        <a href="/etudiants">Étudiants</a>
-    </div>
-    <div>
-        <a href="/login">Connexion</a>
-
-    </div>
-</nav>
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="/">Accueil</a>
+    <a href="/filieres">Filières</a>
+    <a href="/etudiants">Étudiants</a>
+    <a href="/login">Connexion</a>
+</div>
 
 <!-- Contenu principal -->
 <div class="container">
-    <h1>Liste des Filières</h1>
-    <a class="add-button" th:href="@{/filieres/add}">Ajouter une Filière</a>
+    <h1>Liste des Filières</h1>
+    <a class="add-button" th:href="@{/filieres/add}">Ajouter une Filière</a>
     <table>
         <thead>
         <tr>
