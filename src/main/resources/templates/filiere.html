@@ -103,6 +103,26 @@
             background-color: #218838;
             text-decoration: none;
         }
+
+        /* Boutons de téléchargement */
+        .download-buttons {
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .download-buttons a {
+            padding: 10px 15px;
+            background-color: #3498db; /* Couleur bleue */
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-buttons a:hover {
+            background-color: #2980b9; /* Couleur bleue plus foncée au survol */
+        }
     </style>
 </head>
 <body>
@@ -117,7 +137,17 @@
 <!-- Contenu principal -->
 <div class="container">
     <h1>Liste des Filières</h1>
-    <a class="add-button" th:href="@{/filieres/add}">Ajouter une Filière</a>
+
+    <!-- Boutons Ajouter et Télécharger -->
+    <div>
+        <a class="add-button" th:href="@{/filieres/add}">Ajouter une Filière</a>
+        <div class="download-buttons">
+            <a th:href="@{/filieres/downloadPDFF}">Télécharger PDF</a>
+            <a th:href="@{/filieres/downloadEXCELF}">Télécharger Excel</a>
+        </div>
+    </div>
+
+    <!-- Tableau des filières -->
     <table>
         <thead>
         <tr>
