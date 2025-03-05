@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Étudiants</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         /* Style global */
         body {
@@ -168,9 +169,14 @@
 </div>
 
 <!-- Contenu principal -->
-<div class="container">
+<div class="container m-5">
     <h1>Liste des Étudiants</h1>
     <a href="/etudiants/add" class="button">Ajouter un Étudiant</a>
+        <div class="download-buttons">
+            <a th:href="@{/etudiants/downloadPDF}">Télécharger PDF</a>
+            <a th:href="@{/etudiants/downloadEXCEL}">Télécharger Excel</a>
+        </div>
+
     <form class="search-form" th:action="@{/etudiants/search}" method="get">
         <input type="text" name="name" placeholder="Nom">
         <input type="text" name="email" placeholder="Email">
@@ -220,5 +226,12 @@
         </tbody>
     </table>
 </div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
