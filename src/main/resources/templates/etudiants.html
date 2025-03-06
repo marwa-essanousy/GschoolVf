@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Étudiants</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <style>
         /* Style global */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f9;
@@ -18,7 +19,7 @@
 
         /* Sidebar */
         .sidebar {
-            width: 250px;
+            width: 250px; /* Largeur fixe pour correspondre aux autres pages */
             background-color: #4CAF50;
             height: 100vh; /* Prend toute la hauteur de la page */
             padding: 20px;
@@ -35,6 +36,8 @@
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
+            font-weight: bold; /* Texte en gras pour correspondre à la page Filières */
+            transition: background-color 0.3s;
         }
 
         .sidebar a:hover {
@@ -42,11 +45,12 @@
             border-radius: 5px;
         }
 
+
         /* Contenu principal */
         .container {
             flex: 1;
             max-width: 1200px;
-            margin: 20px 20px 20px 290px; /* Marge à gauche pour éviter la superposition avec la sidebar */
+            margin: 80px 20px 20px 290px; /* Marge en haut pour le header */
             padding: 20px;
             background: white;
             border-radius: 8px;
@@ -58,12 +62,31 @@
             text-align: center;
         }
 
+        .download-buttons {
+            display: inline-block;
+            margin-left: 630px;
+        }
+
+        .download-buttons a {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .download-buttons a:hover {
+            background-color: #3e8e41;
+        }
+
         a.button {
             display: inline-block;
             background-color: #4CAF50;
             color: white;
             padding: 10px 15px;
-            border-radius: 4px;
+            border-radius: 5px;
             text-decoration: none;
             font-size: 14px;
             margin-bottom: 20px;
@@ -78,6 +101,10 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+        }
+
+        table th:nth-child(3), table td:nth-child(3) {
+            width: 150px; /* ajuste la largeur selon tes besoins */
         }
 
         table, th, td {
@@ -165,17 +192,23 @@
     <a href="/">Accueil</a>
     <a href="/filieres">Filières</a>
     <a href="/etudiants">Étudiants</a>
+    <a href="/utilisateurs">Utilisateurs</a>
     <a href="/login">Connexion</a>
 </div>
 
+
+
+
 <!-- Contenu principal -->
-<div class="container m-5">
+<div class="container">
     <h1>Liste des Étudiants</h1>
-    <a href="/etudiants/add" class="button">Ajouter un Étudiant</a>
+    <div class="btn">
+        <a href="/etudiants/add" class="button">Ajouter un Étudiant</a>
         <div class="download-buttons">
             <a th:href="@{/etudiants/downloadPDF}">Télécharger PDF</a>
             <a th:href="@{/etudiants/downloadEXCEL}">Télécharger Excel</a>
         </div>
+    </div>
 
     <form class="search-form" th:action="@{/etudiants/search}" method="get">
         <input type="text" name="name" placeholder="Nom">
@@ -226,9 +259,6 @@
         </tbody>
     </table>
 </div>
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

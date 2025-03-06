@@ -27,30 +27,26 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@RequestParam("email") String email,
-                        @RequestParam("motDePasse") String motDePasse,
-                        Model model) {
-
+    public String login(@RequestParam("email") String email, @RequestParam("motDePasse") String motDePasse, Model model) {
         Optional<Utilisateur> utilisateur = utilisateurService.login(email, motDePasse);
-
         if (utilisateur.isPresent()) {
-            // Ajoutez l'utilisateur dans le modèle pour la session ou redirection
             model.addAttribute("utilisateur", utilisateur.get());
-            return "redirect:/"; // Redirige vers le tableau de bord
+            return "redirect:/";
         } else {
-            // Affiche une erreur si les identifiants sont incorrects
             model.addAttribute("error", "Email ou mot de passe incorrect");
-            return "login"; // Retourne à la page login.html
+            return "login";
         }
     }
+
 
     @GetMapping("/deconnecter")
-    public String login(HttpServletRequest request) {
-        HttpSession session = request.getSession(false); // Récupère la session si elle existe
-        if (session != null) {
-            session.invalidate(); // Invalide la session
-        }
-        return "redirect:/accueil"; // Redirige vers la page de connexion
+    public String logout(HttpSession session, Model model) {
+        session.invalidate();
+        model.addAttribute("utilisateur", null);
+        return "redirect:/accueil";
     }
+
+
+
 
 }

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire Étudiant</title>
+    <title>Formulaire Étudiant</title>
     <style>
+        /* Style global */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f9;
@@ -16,16 +17,15 @@
 
         /* Sidebar */
         .sidebar {
-            position: fixed; /* Ajoutez cette ligne */
-            top: 0; /* Ajoutez cette ligne */
-            left: 0; /* Ajoutez cette ligne */
-            width: 250px;
+            width: 250px; /* Largeur fixe pour correspondre aux autres pages */
             background-color: #4CAF50;
+            height: 100vh; /* Prend toute la hauteur de la page */
             padding: 20px;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            height: 100vh; /* Modifiez cette ligne */
+            position: fixed; /* Fixe la sidebar */
+            top: 0;
+            left: 0;
         }
-
 
         .sidebar a {
             color: white;
@@ -34,6 +34,8 @@
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
+            font-weight: bold; /* Texte en gras pour correspondre à la page Filières */
+            transition: background-color 0.3s;
         }
 
         .sidebar a:hover {
@@ -44,6 +46,7 @@
         /* Contenu principal */
         .container {
             flex: 1;
+            margin-left: 290px; /* Marge à gauche pour éviter la superposition avec la sidebar */
             padding: 20px;
         }
 
@@ -140,27 +143,28 @@
 <!-- Sidebar -->
 <div class="sidebar">
     <a href="/">Accueil</a>
-    <a href="/filieres">Filières</a>
-    <a href="/etudiants">Étudiants</a>
+    <a href="/filieres">Filières</a>
+    <a href="/etudiants">Étudiants</a>
+    <a href="/utilisateurs">Utilisateurs</a>
     <a href="/login">Connexion</a>
 </div>
 
 <!-- Contenu principal -->
 <div class="container">
     <div class="form-container">
-        <h2>Ajouter un Étudiant</h2>
+        <h2>Ajouter un Étudiant</h2>
         <form th:object="${etudiant}" th:action="@{/etudiants/add}" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="codeEtudiant">Code Étudiant :</label>
-                <input type="text" id="codeEtudiant" name="codeEtudiant" placeholder="Entrez le code étudiant" required>
+                <label for="codeEtudiant">Code Étudiant :</label>
+                <input type="text" id="codeEtudiant" name="codeEtudiant" placeholder="Entrez le code étudiant" required>
             </div>
             <div class="form-group">
                 <label for="nom">Nom :</label>
                 <input type="text" id="nom" name="nom" placeholder="Entrez le nom" required>
             </div>
             <div class="form-group">
-                <label for="prenom">Prénom :</label>
-                <input type="text" id="prenom" name="prenom" placeholder="Entrez le prénom" required>
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Entrez le prénom" required>
             </div>
             <div class="form-group">
                 <label for="email">Email :</label>
@@ -175,9 +179,9 @@
                 <input type="file" id="photoFile" name="photoFile" accept="image/*">
             </div>
             <div class="form-group">
-                <label for="filiere">Filière :</label>
+                <label for="filiere">Filière :</label>
                 <select id="filiere" name="filiereId" required>
-                    <option value="" disabled selected>Choisir une filière</option>
+                    <option value="" disabled selected>Choisir une filière</option>
                     <option th:each="filiere : ${filieres}" th:value="${filiere.id}" th:text="${filiere.nom}"></option>
                 </select>
             </div>

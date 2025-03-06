@@ -159,7 +159,7 @@ public class EtudiantController {
         }
 
         // Sauvegarder les modifications
-        etudiantService.saveEtudiant(existingEtudiant);
+        etudiantService.updateEtudiant(existingEtudiant);
         redirectAttributes.addFlashAttribute("successMessage", "Étudiant modifié avec succès !");
         return "redirect:/etudiants";
     }

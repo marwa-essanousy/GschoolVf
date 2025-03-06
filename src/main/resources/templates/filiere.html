@@ -5,8 +5,8 @@
     <style>
         /* Styles généraux */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
             margin: 0;
             padding: 0;
             display: flex;
@@ -15,7 +15,7 @@
         /* Sidebar */
         .sidebar {
             width: 250px;
-            background-color: #2c3e50;
+            background-color: #4CAF50;
             height: 100vh;
             padding: 20px;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
@@ -27,11 +27,13 @@
             display: block;
             padding: 10px;
             margin: 10px 0;
+            font-size: 16px;
             font-weight: bold;
+            transition: background-color 0.3s;
         }
 
         .sidebar a:hover {
-            background-color: #34495e;
+            background-color: #45a049;
             border-radius: 5px;
         }
 
@@ -43,21 +45,14 @@
 
         h1 {
             color: #333;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            margin-bottom: 20px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         table, th, td {
@@ -70,38 +65,44 @@
         }
 
         th {
-            background-color: #2c3e50;
+            background-color: #4CAF50;
             color: white;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
 
         tr:hover {
-            background-color: #ddd;
+            background-color: #f1f1f1;
         }
 
         .actions a {
             margin-right: 10px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
         }
 
-        .actions a:last-child {
-            margin-right: 0;
+        .actions a:hover {
+            color: #45a049;
+            text-decoration: underline;
         }
 
         .add-button {
             display: inline-block;
             margin-bottom: 20px;
             padding: 10px 15px;
-            background-color: #28a745;
+            background-color: #4CAF50;
             color: white;
             border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
         }
 
         .add-button:hover {
-            background-color: #218838;
-            text-decoration: none;
+            background-color: #45a049;
         }
 
         /* Boutons de téléchargement */
@@ -112,16 +113,16 @@
 
         .download-buttons a {
             padding: 10px 15px;
-            background-color: #3498db; /* Couleur bleue */
+            background-color: #3498db;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             font-size: 14px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
         }
 
         .download-buttons a:hover {
-            background-color: #2980b9; /* Couleur bleue plus foncée au survol */
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -131,6 +132,7 @@
     <a href="/">Accueil</a>
     <a href="/filieres">Filières</a>
     <a href="/etudiants">Étudiants</a>
+    <a href="/utilisateurs">Utilisateurs</a>
     <a href="/login">Connexion</a>
 </div>
 

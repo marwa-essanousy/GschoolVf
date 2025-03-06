@@ -5,56 +5,61 @@
     <style>
         /* Style général */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
+            background-color: #f4f4f9;
             color: #333;
+            display: flex;
         }
 
-        /* Barre de navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
+        /* Sidebar */
+        .sidebar {
+            width: 250px; /* Largeur fixe pour correspondre aux autres pages */
             background-color: #4CAF50;
+            height: 100vh; /* Prend toute la hauteur de la page */
             padding: 20px;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            height: 100vh;
+            position: fixed; /* Fixe la sidebar */
+            top: 0;
+            left: 0;
         }
 
-        nav a {
+        .sidebar a {
             color: white;
             text-decoration: none;
             display: block;
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
+            font-weight: bold; /* Texte en gras pour correspondre à la page Filières */
+            transition: background-color 0.3s;
         }
 
-        nav a:hover {
+        .sidebar a:hover {
             background-color: #45a049;
             border-radius: 5px;
         }
 
         /* Contenu principal */
         .container {
+            flex: 1;
+            margin-left: 290px; /* Marge à gauche pour éviter la superposition avec la sidebar */
+            padding: 20px;
+        }
+
+        .form-container {
             max-width: 600px;
-            margin: 50px auto; /* Centre horizontalement */
+            margin: 50px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: center; /* Centre horizontalement */
-            align-items: center; /* Centre verticalement */
-            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             text-align: center;
-            color: #2c3e50;
+            color: #4CAF50; /* Couleur verte pour correspondre au thème */
             margin-bottom: 20px;
         }
 
@@ -68,14 +73,14 @@
         label {
             margin-bottom: 8px;
             font-weight: bold;
-            color: #34495e;
+            color: #333;
         }
 
         input[type="text"],
         textarea {
             padding: 10px;
             margin-bottom: 20px;
-            border: 1px solid #bdc3c7;
+            border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
             width: 100%;
@@ -87,6 +92,7 @@
         textarea:focus {
             border-color: #4CAF50;
             outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
         }
 
         textarea {
@@ -102,7 +108,7 @@
 
         button {
             flex: 1;
-            background-color: #1abc9c;
+            background-color: #4CAF50; /* Couleur verte pour correspondre au thème */
             color: white;
             padding: 12px;
             border: none;
@@ -113,15 +119,15 @@
         }
 
         button:hover {
-            background-color: #16a085;
+            background-color: #45a049; /* Couleur verte plus foncée au survol */
         }
 
         button[type="button"] {
-            background-color: #e74c3c;
+            background-color: #e74c3c; /* Couleur rouge pour le bouton Retour */
         }
 
         button[type="button"]:hover {
-            background-color: #c0392b;
+            background-color: #c0392b; /* Couleur rouge plus foncée au survol */
         }
 
         /* Lien Retour */
@@ -139,33 +145,32 @@
     </style>
 </head>
 <body>
-<!-- Barre de navigation -->
-<nav>
-    <div>
-        <a href="/">Accueil</a>
-        <a href="/filieres">Filières</a>
-        <a href="/etudiants">Étudiants</a>
-    </div>
-    <div>
-        <a href="/login">Connexion</a>
-    </div>
-</nav>
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="/">Accueil</a>
+    <a href="/filieres">Filières</a>
+    <a href="/etudiants">Étudiants</a>
+    <a href="/utilisateurs">Utilisateurs</a>
+    <a href="/login">Connexion</a>
+</div>
 
 <!-- Contenu principal -->
 <div class="container">
-    <h1>Ajouter une Filière</h1>
-    <form th:action="@{/filieres/save}" th:object="${filiere}" method="post">
-        <label for="nom">Nom:</label>
-        <input type="text" id="nom" th:field="*{nom}" required>
+    <div class="form-container">
+        <h1>Ajouter une Filière</h1>
+        <form th:action="@{/filieres/save}" th:object="${filiere}" method="post">
+            <label for="nom">Nom:</label>
+            <input type="text" id="nom" th:field="*{nom}" required>
 
-        <label for="description">Description:</label>
-        <textarea id="description" th:field="*{description}"></textarea>
+            <label for="description">Description:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
 
-        <div class="button-container">
-            <button type="submit">Enregistrer</button>
-            <button type="button" onclick="window.location.href='/filieres'">Retour</button>
-        </div>
-    </form>
+            <div class="button-container">
+                <button type="submit">Enregistrer</button>
+                <button type="button" onclick="window.location.href='/filieres'">Retour</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

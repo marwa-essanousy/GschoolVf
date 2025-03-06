@@ -23,4 +23,19 @@ public class UtilisateurService {
     public List<Utilisateur> listeUtilisateurs() {
         return utilisateurRepository.findAll();
     }
+
+    public void supprimerUtilisateur(Integer id) {
+        utilisateurRepository.deleteById(id);
+    }
+
+    public Utilisateur getUtilisateurById(Integer id) {
+        Optional<Utilisateur> utilisateur = utilisateurRepository.findById(id);
+        return utilisateur.orElse(null);
+    }
+
+    public void modifierUtilisateur(Utilisateur utilisateur) {
+        utilisateurRepository.save(utilisateur);
+    }
+
+
 }

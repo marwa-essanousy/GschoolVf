@@ -1,12 +1,14 @@
 package org.example.gschool.repository;
 
 import org.example.gschool.entity.Etudiant;
+import org.example.gschool.entity.Filiere;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
@@ -26,4 +28,6 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
                                    @Param("email") String email,
                                    @Param("code") String code,
                                    @Param("sort") String sort);
+
+
 }

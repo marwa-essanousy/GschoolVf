@@ -1,18 +1,176 @@
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Email</th>
-        <th>Mot de passe</th>
-        <th>Rôle</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-    </tr>
-    <tr th:each="utilisateur : ${utilisateurs}">
-        <td th:text="${utilisateur.id}"></td>
-        <td th:text="${utilisateur.email}"></td>
-        <td th:text="${utilisateur.motDePasse}"></td>
-        <td th:text="${utilisateur.role}"></td>
-        <td th:text="${utilisateur.nom}"></td>
-        <td th:text="${utilisateur.prenom}"></td>
-    </tr>
-</table>
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utilisateurs</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Style global */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px; /* Largeur fixe pour correspondre aux autres pages */
+            background-color: #4CAF50;
+            height: 100vh; /* Prend toute la hauteur de la page */
+            padding: 20px;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Fixe la sidebar */
+            top: 0;
+            left: 0;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold; /* Texte en gras pour correspondre à la page Filières */
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #45a049;
+            border-radius: 5px;
+        }
+
+        /* Contenu principal */
+        .container {
+            flex: 1;
+            margin-left: 290px; /* Marge à gauche pour éviter la superposition avec la sidebar */
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Boutons Ajouter */
+        .add-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .add-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Actions */
+        .actions a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 0 5px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .actions a:hover {
+            color: #45a049;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="/">Accueil</a>
+    <a href="/filieres">Filières</a>
+    <a href="/etudiants">Étudiants</a>
+    <a href="/utilisateurs">Utilisateurs</a>
+    <a href="/login">Connexion</a>
+</div>
+
+<!-- Contenu principal -->
+<div class="container">
+    <h1>Liste des Utilisateurs</h1>
+
+    <!-- Bouton Ajouter -->
+    <div>
+        <a class="add-button" th:href="@{/utilisateurs/ajouter}">Ajouter Un Utilisateur</a>
+    </div>
+
+    <!-- Tableau des utilisateurs -->
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Mot de passe</th>
+            <th>Rôle</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="utilisateur : ${utilisateurs}">
+            <td th:text="${utilisateur.id}"></td>
+            <td th:text="${utilisateur.email}"></td>
+            <td th:text="${utilisateur.motDePasse}"></td>
+            <td th:text="${utilisateur.role}"></td>
+            <td th:text="${utilisateur.nom}"></td>
+            <td th:text="${utilisateur.prenom}"></td>
+            <td class="actions">
+                <a th:href="@{/utilisateurs/modifier/{id}(id=${utilisateur.id})}">Modifier</a>
+                <a th:href="@{/utilisateurs/supprimer/{id}(id=${utilisateur.id})}">Supprimer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

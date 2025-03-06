@@ -3,17 +3,24 @@ package org.example.gschool.service;
 import org.example.gschool.entity.Etudiant;
 import org.example.gschool.entity.Filiere;
 import org.example.gschool.repository.EtudiantRepository;
+import org.example.gschool.repository.FiliereRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EtudiantService {
 
     private final EtudiantRepository etudiantRepository;
+    private final FiliereRepository filiereRepository;
 
-    public EtudiantService(EtudiantRepository etudiantRepository) {
+    @Autowired
+    public EtudiantService(EtudiantRepository etudiantRepository, FiliereRepository filiereRepository) {
         this.etudiantRepository = etudiantRepository;
+        this.filiereRepository = filiereRepository;
     }
 
     public List<Etudiant> getAllEtudiants() {
@@ -37,5 +44,8 @@ public class EtudiantService {
     }
 
     public List<Etudiant> searchEtudiants(String name, String email, String code, String sort) {
-        return etudiantRepository.searchEtudiants(name, email, code,sort);}
+        return etudiantRepository.searchEtudiants(name, email, code, sort);
+    }
+
+
 }

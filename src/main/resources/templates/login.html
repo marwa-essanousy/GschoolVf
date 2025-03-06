@@ -15,43 +15,74 @@
             align-items: center;
             height: 100vh;
         }
-        .login-container {
+        .login-wrapper {
+            display: flex;
+            align-items: center;
             background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 900px; /* Conteneur plus large */
+            width: 100%;
             padding: 20px;
+            height: 500px;
+        }
+        .login-image {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+        }
+        .login-image img {
+            width: 100%;
+            max-width: 350px; /* Image plus grande */
+            height: auto;
+        }
+        .login-container {
+            /*background-color: #fff;*/
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: 500px; /* Conteneur plus large */
+        }
+        .login-container img {
+            display: block;
+            margin: 0 auto 20px;
+            width: 100px;
         }
         h1 {
             text-align: center;
             color: #333;
+            margin-bottom: 20px;
         }
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         label {
             display: block;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             color: #555;
         }
         input[type="email"],
         input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
+            width: 95%;
+            padding: 12px;
+            border: 2px solid #ccc;
             border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #007BFF;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #0056b3;
@@ -59,11 +90,27 @@
         .error-message {
             color: red;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .login-container {
+                padding: 20px;
+                max-width: 90%;
+            }
+            h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
+<div class="login-wrapper">
+    <div class="login-image">
+        <img src="https://s2.qwant.com/thumbr/300x300/f/1/2497017cf3bea1ca4a8383cba376e65e251656bf6c09cbf6e8c70aa450f331/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.mVoCYuzn3lfKo4hDkDsSXQAAAA%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo">
+    </div>
 <div class="login-container">
     <h1>Connexion</h1>
     <form th:action="@{/login}" method="post">
@@ -83,5 +130,7 @@
         <p th:text="${error}"></p>
     </div>
 </div>
+</div>
+
 </body>
 </html>
