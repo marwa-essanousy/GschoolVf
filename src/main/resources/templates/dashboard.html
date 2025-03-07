@@ -1,51 +1,166 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Dashboard</title>
+    <title>Statistiques des étudiants par filière</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Styles généraux */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #f4f4f9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed; /* Fixe le sidebar */
+            top: 0;
+            left: 0;
+            width: 220px;
+            background-color: #4CAF50;
+            height: 100vh; /* Prend toute la hauteur de la page */
+            padding: 20px;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            color: white;
+            overflow-y: hidden; /* Pas de défilement */
+        }
+
+        .sidebar img {
+            width: 100px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 10px 0;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar button {
+            color: white;
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 310px 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar button:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Contenu principal */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 240px; /* Ajusté pour correspondre à la largeur de la sidebar + espace */
+        }
+
+        /* Style du titre */
+        .chart-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Style du graphique */
+        #myChart {
+            width: 500px !important; /* Largeur du graphique */
+            height: 300px !important; /* Hauteur du graphique */
+            margin: 0 auto; /* Centrer le graphique */
+        }
+    </style>
 </head>
 <body>
-<h1>Répartition des Filières</h1>
-<canvas id="pieChart"></canvas>
+<!-- Sidebar -->
+<div class="sidebar">
+    <!-- Image en haut de la sidebar -->
+    <img src="https://s1.qwant.com/thumbr/474x474/a/1/ed68f387a6a88993c730cd6d141c853ec51a7ec019335c6767658b4ccdd786/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.kP8qeW3CnlWEScm93TjSOQHaHa%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo de l'école">
+    <a href="/">Accueil</a>
+    <a href="/dashboard">Statistiques</a> <!-- Nouveau lien pour les statistiques -->
+    <a href="/filieres">Filières</a>
+    <a href="/etudiants">Étudiants</a>
+    <a href="/utilisateurs">Utilisateurs</a>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Deconnexion</button>
+    </form>
+</div>
 
-<h1>Nombre des Étudiants par Filières</h1>
-<canvas id="barChart"></canvas>
+<!-- Contenu principal -->
+<div class="main-content">
+    <!-- Titre juste au-dessus du graphique -->
+    <div class="chart-title">Statistiques des étudiants par filière</div>
+    <!-- Graphique -->
+    <canvas id="myChart" width="500" height="300"></canvas>
+</div>
 
-<script th:inline="javascript">
-    var labels = /*[[${stats.keySet()}]]*/ [];
-    var data = /*[[${stats.values()}]]*/ [];
+<script>
+    // Récupérer les données de l'API
+    fetch('/api/stats')
+        .then(response => response.json())
+        .then(data => {
+            // Préparer les données pour Chart.js
+            const labels = Object.keys(data); // Noms des filières
+            const values = Object.values(data); // Nombre d'étudiants
 
-    // Pie Chart Data
-    var pieData = {
-        labels: labels,
-        datasets: [{
-            data: data,
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
-        }]
-    };
-
-    // Bar Chart Data
-    var barData = {
-        labels: labels,
-        datasets: [{
-            data: data,
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
-        }]
-    };
-
-    // Render Pie Chart
-    var ctxPie = document.getElementById('pieChart').getContext('2d');
-    new Chart(ctxPie, {
-        type: 'pie',
-        data: pieData
-    });
-
-    // Render Bar Chart
-    var ctxBar = document.getElementById('barChart').getContext('2d');
-    new Chart(ctxBar, {
-        type: 'bar',
-        data: barData
-    });
+            // Créer le graphique
+            const ctx = document.getElementById('myChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar', // Type de graphique (bar, line, pie, etc.)
+                data: {
+                    labels: labels, // Noms des filières
+                    datasets: [{
+                        label: 'Nombre d\'étudiants',
+                        data: values, // Nombre d'étudiants
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)', // Rouge
+                            'rgba(54, 162, 235, 0.2)',  // Bleu
+                            'rgba(75, 192, 192, 0.2)',  // Vert
+                            'rgba(153, 102, 255, 0.2)', // Violet
+                            'rgba(255, 159, 64, 0.2)'   // Orange
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',   // Rouge
+                            'rgba(54, 162, 235, 1)',    // Bleu
+                            'rgba(75, 192, 192, 1)',    // Vert
+                            'rgba(153, 102, 255, 1)',   // Violet
+                            'rgba(255, 159, 64, 1)'     // Orange
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Erreur lors de la récupération des données:', error));
 </script>
 </body>
 </html>

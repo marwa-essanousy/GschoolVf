@@ -38,7 +38,9 @@ public class filiereController {
 
     @GetMapping
     public String listFilieres(Model model) {
-        model.addAttribute("filieres", filiereService.getAllFilieres());
+        List<Filiere> filieres = filiereService.getAllFilieresWithStudentCount();
+        model.addAttribute("filieres", filieres);
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             String username = authentication.getName();
@@ -49,7 +51,6 @@ public class filiereController {
         }
         return "filiere";
     }
-
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("filiere", new Filiere());
