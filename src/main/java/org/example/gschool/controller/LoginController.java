@@ -14,39 +14,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
 
+
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+    public class LoginController {
 
-    @Autowired
-    private UtilisateurService utilisateurService;
-
-    @GetMapping
-    public String showLoginPage() {
-        return "login"; // Affiche login.html
-    }
-
-    @PostMapping
-    public String login(@RequestParam("email") String email, @RequestParam("motDePasse") String motDePasse, Model model) {
-        Optional<Utilisateur> utilisateur = utilisateurService.login(email, motDePasse);
-        if (utilisateur.isPresent()) {
-            model.addAttribute("utilisateur", utilisateur.get());
-            return "redirect:/";
-        } else {
-            model.addAttribute("error", "Email ou mot de passe incorrect");
+        @GetMapping("/login")
+        public String showLoginPage() {
             return "login";
         }
-    }
 
-
-    @GetMapping("/deconnecter")
-    public String logout(HttpSession session, Model model) {
-        session.invalidate();
-        model.addAttribute("utilisateur", null);
-        return "redirect:/accueil";
-    }
-
-
-
-
+        @PostMapping("/login")
+        public String login(@RequestParam String email, @RequestParam String password) {
+            return "redirect:/";
 }
+
+
+    }

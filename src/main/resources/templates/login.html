@@ -111,25 +111,25 @@
     <div class="login-image">
         <img src="https://s2.qwant.com/thumbr/300x300/f/1/2497017cf3bea1ca4a8383cba376e65e251656bf6c09cbf6e8c70aa450f331/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.mVoCYuzn3lfKo4hDkDsSXQAAAA%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo">
     </div>
-<div class="login-container">
-    <h1>Connexion</h1>
-    <form th:action="@{/login}" method="post">
-        <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="motDePasse">Mot de passe :</label>
-            <input type="password" id="motDePasse" name="motDePasse" required>
-        </div>
-        <button type="submit">Se connecter</button>
-    </form>
+    <div class="login-container">
+        <h1>Connexion</h1>
+        <form th:action="@{/login}" method="post">
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe :</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Se connecter</button>
+        </form>
 
-    <!-- Message d'erreur si la connexion échoue -->
-    <div class="error-message" th:if="${error}">
-        <p th:text="${error}"></p>
+        <!-- Message d'erreur si la connexion échoue -->
+        <div class="error-message" th:if="${error}">
+            <p th:text="${error}"></p>
+        </div>
     </div>
-</div>
 </div>
 
 </body>

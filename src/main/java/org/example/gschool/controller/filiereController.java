@@ -27,8 +27,11 @@ import java.util.List;
 @RequestMapping("/filieres")
 public class filiereController {
 
-    @Autowired
     private FiliereService filiereService;
+
+    public filiereController(FiliereService filiereService) {
+        this.filiereService = filiereService;
+    }
 
     @GetMapping
     public String listFilieres(Model model) {
@@ -140,6 +143,14 @@ public class filiereController {
         // Écrire le classeur dans la réponse HTTP
         workbook.write(response.getOutputStream());
         workbook.close();
+    }
+
+
+    @GetMapping("/dashboard")
+    public String dashboard(Model model) {
+        model.addAttribute("filieres", filiereService.getAllFilieres());
+        model.addAttribute("stats", filiereService.getNombreEtudiantsParFiliere());
+        return "dashboard";
     }
 }
 

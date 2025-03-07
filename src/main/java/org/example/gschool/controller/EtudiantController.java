@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.example.gschool.entity.Etudiant;
 import org.example.gschool.entity.Filiere;
+import org.example.gschool.entity.Utilisateur;
 import org.example.gschool.service.EtudiantService;
 import org.example.gschool.service.FiliereService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +58,14 @@ public class EtudiantController {
     public String listEtudiants(Model model) {
         List<Etudiant> etudiants = etudiantService.getAllEtudiants();
         model.addAttribute("etudiants", etudiants);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            String username = authentication.getName();
+            String email = ((Utilisateur) authentication.getPrincipal()).getEmail();
+
+            model.addAttribute("userName", username);
+            model.addAttribute("userEmail", email);
+        }
         return "etudiants";
     }
 

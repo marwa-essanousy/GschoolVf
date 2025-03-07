@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h1>Répartition des Filières</h1>
+<canvas id="pieChart"></canvas>
+
+<h1>Nombre des Étudiants par Filières</h1>
+<canvas id="barChart"></canvas>
+
+<script th:inline="javascript">
+    var labels = /*[[${stats.keySet()}]]*/ [];
+    var data = /*[[${stats.values()}]]*/ [];
+
+    // Pie Chart Data
+    var pieData = {
+        labels: labels,
+        datasets: [{
+            data: data,
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+        }]
+    };
+
+    // Bar Chart Data
+    var barData = {
+        labels: labels,
+        datasets: [{
+            data: data,
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+        }]
+    };
+
+    // Render Pie Chart
+    var ctxPie = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctxPie, {
+        type: 'pie',
+        data: pieData
+    });
+
+    // Render Bar Chart
+    var ctxBar = document.getElementById('barChart').getContext('2d');
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: barData
+    });
+</script>
+</body>
+</html>

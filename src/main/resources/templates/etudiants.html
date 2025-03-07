@@ -193,7 +193,11 @@
     <a href="/filieres">Filières</a>
     <a href="/etudiants">Étudiants</a>
     <a href="/utilisateurs">Utilisateurs</a>
-    <a href="/login">Connexion</a>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" >
+            <span>Logout</span>
+        </button>
+    </form>
 </div>
 
 
@@ -201,6 +205,11 @@
 
 <!-- Contenu principal -->
 <div class="container">
+    <div>
+        <span>👤</span>
+        <span th:text="${userName}"></span> |
+        <span th:text="${userEmail}"></span>
+    </div>
     <h1>Liste des Étudiants</h1>
     <div class="btn">
         <a href="/etudiants/add" class="button">Ajouter un Étudiant</a>

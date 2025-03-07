@@ -22,6 +22,17 @@ public class Filiere {
     @Column(name = "nom", nullable = false)
     private String nom;
 
+    @Transient
+    private Integer nombre_etudiant;
+
+    public Integer getNombre_etudiant() {
+        return nombre_etudiant;
+    }
+
+    public void setNombre_etudiant(Integer nombre_etudiant) {
+        this.nombre_etudiant = nombre_etudiant;
+    }
+
     // Getters et Setters
     public Integer getId() {
         return id;

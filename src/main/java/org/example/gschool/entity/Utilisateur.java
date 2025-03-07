@@ -3,10 +3,16 @@ package org.example.gschool.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name = "utilisateur")
-public class Utilisateur {
+public class Utilisateur implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -85,4 +91,39 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
+    // UserDetails Methods
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role));
+    }
+
+    @Override
+    public String getPassword() {
+        return motDePasse; // Return the hashed password
+    }
+
+    @Override
+    public String getUsername() {
+        return nom + prenom; // Use nomUtilisateur as the username
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; // Customize as needed
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true; // Customize as needed
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true; // Customize as needed
+    }
+    @Override
+    public boolean isEnabled() {
+        return true; // Customize as needed
+}
 }

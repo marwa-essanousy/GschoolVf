@@ -123,12 +123,22 @@
     <a href="/filieres">Filières</a>
     <a href="/etudiants">Étudiants</a>
     <a href="/utilisateurs">Utilisateurs</a>
-    <a href="/login">Connexion</a>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit" >
+            <span>Logout</span>
+        </button>
+    </form>
 </div>
 
 <!-- Main content -->
 <div class="main-content">
     <div class="hero">
+        <div>
+            <span>👤</span>
+            <span th:text="${userName}"></span> |
+            <span th:text="${userEmail}"></span>
+            </div>
+
         <h1>Bienvenue sur la plateforme de gestion d'école</h1>
         <p>Gérez vos filières, étudiants et plus encore avec facilité.</p>
     </div>

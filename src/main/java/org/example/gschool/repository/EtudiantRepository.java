@@ -1,7 +1,10 @@
 package org.example.gschool.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.websocket.Session;
 import org.example.gschool.entity.Etudiant;
 import org.example.gschool.entity.Filiere;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -29,5 +32,5 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
                                    @Param("code") String code,
                                    @Param("sort") String sort);
 
-
+    int countByFiliere(Filiere filiere);
 }

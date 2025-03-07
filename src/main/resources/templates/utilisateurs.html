@@ -149,7 +149,7 @@
         <tr>
             <th>Id</th>
             <th>Email</th>
-            <th>Mot de passe</th>
+
             <th>Rôle</th>
             <th>Nom</th>
             <th>Prénom</th>
@@ -160,7 +160,6 @@
         <tr th:each="utilisateur : ${utilisateurs}">
             <td th:text="${utilisateur.id}"></td>
             <td th:text="${utilisateur.email}"></td>
-            <td th:text="${utilisateur.motDePasse}"></td>
             <td th:text="${utilisateur.role}"></td>
             <td th:text="${utilisateur.nom}"></td>
             <td th:text="${utilisateur.prenom}"></td>
