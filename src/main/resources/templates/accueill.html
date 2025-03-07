@@ -6,6 +6,8 @@
     <title>Accueil</title>
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,14 +22,20 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 250px;
-            background-image: url('/static/p1.jpeg'); /* Chemin de l'image de fond */
-            background-size: cover;
-            background-position: center;
+            width: 250px; /* Largeur de 250px */
+            background-color: #4CAF50; /* Couleur de fond */
             padding: 20px;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            height: 100vh;
+            height: 100vh; /* Prend toute la hauteur de la page */
             color: white;
+
+        }
+
+        .sidebar img {
+            width: 100px; /* Taille réduite pour le logo */
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px; /* Centrer le logo et ajouter une marge en bas */
         }
 
         .sidebar a {
@@ -35,20 +43,40 @@
             text-decoration: none;
             display: block;
             padding: 10px;
-            margin: 10px 0;
+            margin: 10px 0; /* Espacement entre les liens */
             font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar button {
+            color: white;
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 363px 0; /* Espacement pour le bouton */
+        }
+
+        .sidebar button:hover {
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 5px;
         }
 
-        .sidebar a:hover {
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
         /* Main content */
         .main-content {
-            margin-left: 250px;
+            margin-left: 250px; /* Ajusté pour correspondre à la largeur de la sidebar */
             padding: 20px;
+            margin-top: 35px;
         }
 
         .hero {
@@ -86,6 +114,12 @@
             flex: 1 1 300px;
         }
 
+        .feature i {
+            font-size: 2rem;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
         .feature h2 {
             font-size: 1.5rem;
             margin-bottom: 10px;
@@ -113,46 +147,67 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* En-tête utilisateur */
+        .user-info {
+            position: fixed; /* Fixe l'en-tête utilisateur en haut à droite */
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: #333; /* Couleur du texte */
+            z-index: 1000; /* Assure que l'en-tête est au-dessus du contenu */
+        }
+
+        .user-info span {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 <!-- Sidebar -->
 <div class="sidebar">
-
+    <!-- Image en haut de la sidebar -->
+    <img src="https://s1.qwant.com/thumbr/474x474/a/1/ed68f387a6a88993c730cd6d141c853ec51a7ec019335c6767658b4ccdd786/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.kP8qeW3CnlWEScm93TjSOQHaHa%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo de l'école"> <!-- Remplacez par le chemin de votre image -->
     <a href="/">Accueil</a>
     <a href="/filieres">Filières</a>
     <a href="/etudiants">Étudiants</a>
     <a href="/utilisateurs">Utilisateurs</a>
     <form th:action="@{/logout}" method="post">
-        <button type="submit" >
-            <span>Logout</span>
-        </button>
+        <button style="background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                transition: background-color 0.3s;"  type="submit">Deconnexion</button>
     </form>
 </div>
 
-<!-- Main content -->
+<!-- En-tête utilisateur -->
+<div class="user-info">
+    <span>👤</span>
+    <span th:text="${userName}"></span>
+</div>
+
+<!-- Contenu principal -->
 <div class="main-content">
     <div class="hero">
-        <div>
-            <span>👤</span>
-            <span th:text="${userName}"></span> |
-            <span th:text="${userEmail}"></span>
-            </div>
-
         <h1>Bienvenue sur la plateforme de gestion d'école</h1>
         <p>Gérez vos filières, étudiants et plus encore avec facilité.</p>
     </div>
 
     <div class="features">
         <div class="feature">
+            <i class="fas fa-graduation-cap"></i> <!-- Icône pour Gestion des Filières -->
             <h2>Gestion des Filières</h2>
             <p>Ajoutez, modifiez ou supprimez des filières en quelques clics.</p>
         </div>
         <div class="feature">
+            <i class="fas fa-user-graduate"></i> <!-- Icône pour Gestion des Étudiants -->
             <h2>Gestion des Étudiants</h2>
             <p>Inscrivez et suivez les étudiants dans leurs parcours académiques.</p>
         </div>
         <div class="feature">
+            <i class="fas fa-chart-line"></i> <!-- Icône pour Rapports et Statistiques -->
             <h2>Rapports et Statistiques</h2>
             <p>Consultez des rapports détaillés pour une meilleure prise de décision.</p>
         </div>

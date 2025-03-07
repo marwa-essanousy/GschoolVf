@@ -29,7 +29,7 @@
             left: 0;
         }
 
-        .sidebar a {
+        .sidebar a, .sidebar button {
             color: white;
             text-decoration: none;
             display: block;
@@ -38,9 +38,14 @@
             font-size: 16px;
             font-weight: bold; /* Texte en gras pour correspondre à la page Filières */
             transition: background-color 0.3s;
+            background: none;
+            border: none;
+            text-align: left;
+            width: 100%;
+            cursor: pointer;
         }
 
-        .sidebar a:hover {
+        .sidebar a:hover, .sidebar button:hover {
             background-color: #45a049;
             border-radius: 5px;
         }
@@ -53,6 +58,7 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-top: 80px; /* Ajout d'une marge en haut pour décaler le contenu */
         }
 
         h1 {
@@ -122,6 +128,22 @@
             color: #45a049;
             text-decoration: underline;
         }
+
+        /* En-tête utilisateur */
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .user-info span {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -131,25 +153,27 @@
     <a href="/filieres">Filières</a>
     <a href="/etudiants">Étudiants</a>
     <a href="/utilisateurs">Utilisateurs</a>
-    <a href="/login">Connexion</a>
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Deconnexion</button>
+    </form>
 </div>
 
-<!-- Contenu principal -->
+<!-- En-tête utilisateur -->
+<div class="user-info">
+    <span>👤</span>
+    <span th:text="${userName}"></span>
+</div>
+
 <div class="container">
     <h1>Liste des Utilisateurs</h1>
-
-    <!-- Bouton Ajouter -->
     <div>
         <a class="add-button" th:href="@{/utilisateurs/ajouter}">Ajouter Un Utilisateur</a>
     </div>
-
-    <!-- Tableau des utilisateurs -->
     <table>
         <thead>
         <tr>
             <th>Id</th>
             <th>Email</th>
-
             <th>Rôle</th>
             <th>Nom</th>
             <th>Prénom</th>

@@ -5,6 +5,8 @@ import jakarta.servlet.http.HttpSession;
 import org.example.gschool.entity.Utilisateur;
 import org.example.gschool.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +37,14 @@ public class UtilisateurController {
     public String listeUtilisateurs(Model model) {
         List<Utilisateur> utilisateurs = utilisateurService.listeUtilisateurs();
         model.addAttribute("utilisateurs", utilisateurs);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            String username = authentication.getName();
+            String email = ((Utilisateur) authentication.getPrincipal()).getEmail();
+
+            model.addAttribute("userName", username);
+            model.addAttribute("userEmail", email);
+        }
         return "utilisateurs";
     }
     @PostMapping
