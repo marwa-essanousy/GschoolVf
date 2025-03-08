@@ -15,18 +15,6 @@
             display: flex;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px; /* Largeur fixe pour correspondre aux autres pages */
-            background-color: #4CAF50;
-            height: 100vh; /* Prend toute la hauteur de la page */
-            padding: 20px;
-            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            position: fixed; /* Fixe la sidebar */
-            top: 0;
-            left: 0;
-        }
-
         .sidebar a {
             color: white;
             text-decoration: none;
@@ -46,7 +34,7 @@
         /* Contenu principal */
         .container {
             flex: 1;
-            margin-left: 290px; /* Marge à gauche pour éviter la superposition avec la sidebar */
+            margin-left: 20px; /* Marge à gauche pour éviter la superposition avec la sidebar */
             padding: 20px;
         }
 
@@ -63,6 +51,7 @@
             text-align: center;
             color: #4CAF50;
             margin-bottom: 20px;
+
         }
 
         /* Style des groupes de formulaire */
@@ -80,12 +69,13 @@
         .form-group input,
         .form-group select,
         .form-group textarea {
-            width: 100%;
+            width: calc(100% - 20px); /* Réduire la largeur pour laisser de l'espace */
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
             transition: border-color 0.3s ease;
+
         }
 
         .form-group input:focus,

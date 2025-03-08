@@ -34,7 +34,7 @@
         }
 
         .logo img {
-            height: 50px; /* Ajustez la taille du logo */
+            height: 50px;
         }
 
         /* Liens dans la sidebar */
@@ -56,9 +56,8 @@
             border-radius: 5px;
         }
 
-        /* Contenu principal */
         .container {
-            margin-left: 270px; /* Pour éviter que le contenu ne soit caché par la sidebar */
+            margin-left: 270px;
             padding: 20px;
             max-width: 800px;
             width: 100%;
@@ -102,14 +101,6 @@
             background-color: #5a6268;
         }
 
-        .button-danger {
-            background-color: #dc3545;
-        }
-
-        .button-danger:hover {
-            background-color: #c82333;
-        }
-
         /* Styles pour les formulaires */
         .form-group {
             margin-bottom: 20px;
@@ -136,26 +127,6 @@
             resize: vertical;
             min-height: 100px;
         }
-
-        /* Styles pour les messages */
-        .message {
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .message-success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-
-        .message-error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-
-        /* Styles pour la table */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -196,7 +167,6 @@
 <body>
 
 
-<!-- Contenu principal -->
 <div class="container">
     <h1>Modifier une Filière</h1>
     <form th:action="@{/filieres/update/{id}(id=${filiere.id})}" method="post">
