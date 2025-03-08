@@ -6,6 +6,8 @@
     <title>Utilisateurs</title>
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         /* Style global */
         body {
@@ -27,6 +29,13 @@
             position: fixed; /* Fixe la sidebar */
             top: 0;
             left: 0;
+        }
+
+        .sidebar img {
+            width: 100px; /* Taille réduite pour le logo */
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto 20px; /* Centrer le logo et ajouter une marge en bas */
         }
 
         .sidebar a, .sidebar button {
@@ -131,37 +140,50 @@
 
         /* En-tête utilisateur */
         .user-info {
-            position: absolute;
-            top: 20px;
+            position: fixed; /* Fixe l'en-tête utilisateur en haut à droite */
+            top: 10px;
             right: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 16px;
-            color: #333;
+            color: #333; /* Couleur du texte */
+            z-index: 1000; /* Assure que l'en-tête est au-dessus du contenu */
+            background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+            padding: 10px 15px;
+            border-radius: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .user-info span {
             font-weight: bold;
+        }
+        .user-info i {
+            font-size: 1.2rem;
+            color: #4CAF50; /* Couleur de l'icône */
         }
     </style>
 </head>
 <body>
 <!-- Sidebar -->
 <div class="sidebar">
+    <!-- Image en haut de la sidebar -->
+    <img src="https://s1.qwant.com/thumbr/474x474/a/1/ed68f387a6a88993c730cd6d141c853ec51a7ec019335c6767658b4ccdd786/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.kP8qeW3CnlWEScm93TjSOQHaHa%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo de l'école">
     <a href="/">Accueil</a>
     <a href="/dashboard">Statistiques</a>
     <a href="/filieres">Filières</a>
     <a href="/etudiants">Étudiants</a>
     <a href="/utilisateurs">Utilisateurs</a>
     <form th:action="@{/logout}" method="post">
-        <button type="submit">Deconnexion</button>
+        <button style="background-color: rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                transition: background-color 0.3s;"  type="submit">Deconnexion</button>
     </form>
 </div>
 
 <!-- En-tête utilisateur -->
 <div class="user-info">
-    <span>👤</span>
+    <i class="fas fa-user-circle"></i> <!-- Icône Font Awesome pour l'utilisateur -->
     <span th:text="${userName}"></span>
 </div>
 

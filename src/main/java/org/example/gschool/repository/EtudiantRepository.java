@@ -33,4 +33,8 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Integer> {
                                    @Param("sort") String sort);
 
     int countByFiliere(Filiere filiere);
+
+
+    @Query("SELECT e.filiere.nom, COUNT(e) FROM Etudiant e GROUP BY e.filiere")
+    List<Object[]> countStudentsByFiliere();
 }

@@ -28,7 +28,6 @@
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
             height: 100vh; /* Prend toute la hauteur de la page */
             color: white;
-
         }
 
         .sidebar img {
@@ -38,37 +37,27 @@
             margin: 0 auto 20px; /* Centrer le logo et ajouter une marge en bas */
         }
 
-        .sidebar a {
+        .sidebar a, .sidebar button {
             color: white;
             text-decoration: none;
             display: block;
             padding: 10px;
-            margin: 10px 0; /* Espacement entre les liens */
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold; /* Texte en gras pour correspondre à la page Filières */
             transition: background-color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .sidebar button {
-            color: white;
             background: none;
             border: none;
             text-align: left;
             width: 100%;
             cursor: pointer;
-            padding: 10px;
-            font-weight: bold;
-            font-size: 16px;
-            margin: 310px 0; /* Espacement pour le bouton */
         }
 
-        .sidebar button:hover {
-            background-color: rgba(0, 0, 0, 0.5);
+
+
+
+        .sidebar a:hover, .sidebar button:hover {
+            background-color: #45a049;
             border-radius: 5px;
         }
 
@@ -76,7 +65,7 @@
         .main-content {
             margin-left: 250px; /* Ajusté pour correspondre à la largeur de la sidebar */
             padding: 20px;
-            margin-top: 35px;
+            margin-top: 45px;
         }
 
         .hero {
@@ -131,27 +120,10 @@
             color: #555;
         }
 
-        footer {
-            background-color: #343a40;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #17a2b8;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
         /* En-tête utilisateur */
         .user-info {
             position: fixed; /* Fixe l'en-tête utilisateur en haut à droite */
-            top: 20px;
+            top: 10px;
             right: 20px;
             display: flex;
             align-items: center;
@@ -159,10 +131,19 @@
             font-size: 16px;
             color: #333; /* Couleur du texte */
             z-index: 1000; /* Assure que l'en-tête est au-dessus du contenu */
+            background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+            padding: 10px 15px;
+            border-radius: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .user-info span {
             font-weight: bold;
+        }
+
+        .user-info i {
+            font-size: 1.2rem;
+            color: #4CAF50; /* Couleur de l'icône */
         }
     </style>
 </head>
@@ -185,7 +166,7 @@
 
 <!-- En-tête utilisateur -->
 <div class="user-info">
-    <span>👤</span>
+    <i class="fas fa-user-circle"></i> <!-- Icône Font Awesome pour l'utilisateur -->
     <span th:text="${userName}"></span>
 </div>
 

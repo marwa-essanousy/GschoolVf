@@ -1,16 +1,12 @@
 package org.example.gschool.service;
 
 import org.example.gschool.entity.Etudiant;
-import org.example.gschool.entity.Filiere;
 import org.example.gschool.repository.EtudiantRepository;
 import org.example.gschool.repository.FiliereRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class EtudiantService {
@@ -48,5 +44,9 @@ public class EtudiantService {
         return etudiantRepository.searchEtudiants(name, email, code, sort);
     }
 
+    public List<Object[]> getStudentCountByFiliere() {
+        return etudiantRepository.countStudentsByFiliere();
 }
+}
+
 
