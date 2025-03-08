@@ -7,7 +7,7 @@
     <!-- Add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="/styles.css">
     <style>
         /* Style global */
         body {
@@ -62,7 +62,7 @@
         /* Contenu principal */
         .container {
             flex: 1;
-            margin-left: 290px; /* Marge à gauche pour éviter la superposition avec la sidebar */
+            margin-left: 320px; /* Augmentation de la marge à gauche pour centrer le tableau */
             padding: 20px;
             background: white;
             border-radius: 8px;
@@ -79,19 +79,20 @@
         /* Boutons Ajouter */
         .add-button {
             display: inline-block;
-            background-color: #4CAF50;
-            color: white;
+            margin-bottom: 20px;
             padding: 10px 15px;
+            background-color: #388E3C; /* Nuance de vert plus foncée */
+            color: white;
             border-radius: 5px;
             text-decoration: none;
-            font-size: 14px;
-            margin-bottom: 20px;
             transition: background-color 0.3s;
         }
 
+
         .add-button:hover {
-            background-color: #45a049;
-        }
+            background-color: #66BB6A; /* Nuance de vert plus claire au survol */
+            text-decoration: none;
+            }
 
         /* Table */
         table {
@@ -100,6 +101,8 @@
             margin-top: 20px;
             font-size: 14px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px; /* Bordures arrondies pour le tableau */
+            overflow: hidden; /* Pour que les bordures arrondies s'appliquent */
         }
 
         table, th, td {
@@ -127,7 +130,7 @@
         /* Actions */
         .actions a {
             color: #4CAF50;
-            text-decoration: none;
+            text-decoration: none; /* Supprime la ligne sous le texte */
             margin: 0 5px;
             font-weight: bold;
             transition: color 0.3s;
@@ -135,7 +138,7 @@
 
         .actions a:hover {
             color: #45a049;
-            text-decoration: underline;
+            text-decoration: none; /* Supprime la ligne sous le texte au survol */
         }
 
         /* En-tête utilisateur */
@@ -181,6 +184,11 @@
     </form>
 </div>
 
+<div class="theme-toggle">
+    <button id="themeToggle">
+        <i class="fas fa-moon"></i> Thème sombre
+    </button>
+</div>
 <!-- En-tête utilisateur -->
 <div class="user-info">
     <i class="fas fa-user-circle"></i> <!-- Icône Font Awesome pour l'utilisateur -->
@@ -218,5 +226,6 @@
         </tbody>
     </table>
 </div>
+<script src="/theme.js"></script>
 </body>
 </html>

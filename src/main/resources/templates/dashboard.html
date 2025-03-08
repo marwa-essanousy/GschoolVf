@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Add Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/styles.css">
     <style>
         /* Styles généraux */
         body {
@@ -70,7 +71,7 @@
         /* Style du titre */
         .chart-title {
             font-size: 1.5rem;
-            color: #333;
+            color: #4CAF50;
             margin-bottom: 20px;
             text-align: center;
         }
@@ -135,6 +136,12 @@
     </form>
 </div>
 
+
+<div class="theme-toggle">
+    <button id="themeToggle">
+        <i class="fas fa-moon"></i> Thème sombre
+    </button>
+</div>
 <!-- En-tête utilisateur -->
 <div class="user-info">
     <i class="fas fa-user-circle"></i>
@@ -276,5 +283,6 @@
         })
         .catch(error => console.error('Erreur lors de la récupération des données:', error));
 </script>
+<script src="/theme.js"></script>
 </body>
 </html>

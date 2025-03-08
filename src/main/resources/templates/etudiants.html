@@ -6,7 +6,8 @@
     <title>Liste des Étudiants</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <link rel="stylesheet" href="/styles.css">
+    <!-- Votre style CSS -->
     <style>
         /* Style global */
         body {
@@ -20,21 +21,21 @@
 
         /* Sidebar */
         .sidebar {
-            width: 250px; /* Largeur fixe pour correspondre aux autres pages */
+            width: 250px;
             background-color: #4CAF50;
-            height: 100vh; /* Prend toute la hauteur de la page */
+            height: 100vh;
             padding: 20px;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            position: fixed; /* Fixe la sidebar */
+            position: fixed;
             top: 0;
             left: 0;
         }
 
         .sidebar img {
-            width: 100px; /* Taille réduite pour le logo */
+            width: 100px;
             border-radius: 50%;
             display: block;
-            margin: 0 auto 20px; /* Centrer le logo et ajouter une marge en bas */
+            margin: 0 auto 20px;
         }
 
         .sidebar a, .sidebar button {
@@ -44,7 +45,7 @@
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
-            font-weight: bold; /* Texte en gras pour correspondre à la page Filières */
+            font-weight: bold;
             transition: background-color 0.3s;
             background: none;
             border: none;
@@ -62,7 +63,7 @@
         .container {
             flex: 1;
             max-width: 1200px;
-            margin: 80px 20px 20px 290px; /* Marge en haut pour le header */
+            margin: 80px 20px 20px 290px;
             padding: 20px;
             background: white;
             border-radius: 8px;
@@ -74,9 +75,16 @@
             text-align: center;
         }
 
+        .btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
         .download-buttons {
-            display: inline-block;
-            margin-left: 630px;
+            display: flex;
+            gap: 10px;
         }
 
         .download-buttons a {
@@ -87,6 +95,10 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
         }
 
         .download-buttons a:hover {
@@ -101,7 +113,6 @@
             border-radius: 5px;
             text-decoration: none;
             font-size: 14px;
-            margin-bottom: 20px;
         }
 
         a.button:hover {
@@ -111,52 +122,69 @@
         /* Table */
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        table th:nth-child(3), table td:nth-child(3) {
-            width: 150px; /* ajuste la largeur selon tes besoins */
-        }
-
-        table, th, td {
+        table th, table td {
+            padding: 12px;
+            text-align: left;
             border: 1px solid #ddd;
         }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
+        table th {
             background-color: #4CAF50;
             color: white;
+            font-weight: bold;
         }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        table td {
+            background-color: #ffffff;
         }
 
-        tr:hover {
+        table tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover td {
             background-color: #eaf1e4;
         }
 
-        .actions a {
-            color: #4CAF50;
-            text-decoration: none;
-            margin: 0 5px;
+        /* Bordures arrondies pour la première et la dernière cellule de chaque ligne */
+        table tr td:first-child,
+        table tr th:first-child {
+            border-radius: 8px 0 0 8px;
         }
 
-        .actions a:hover {
-            text-decoration: underline;
+        table tr td:last-child,
+        table tr th:last-child {
+            border-radius: 0 8px 8px 0;
         }
 
-        /* Style pour les images */
+        /* Style pour les cellules de photo */
         .photo-cell img {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid #4CAF50;
+        }
+
+        /* Style pour les boutons d'actions */
+        .actions a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 0 5px;
+            font-weight: bold;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
+            color: #45a049;
         }
 
         /* Formulaire de recherche */
@@ -199,16 +227,16 @@
 
         /* En-tête utilisateur */
         .user-info {
-            position: fixed; /* Fixe l'en-tête utilisateur en haut à droite */
+            position: fixed;
             top: 10px;
             right: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 16px;
-            color: #333; /* Couleur du texte */
-            z-index: 1000; /* Assure que l'en-tête est au-dessus du contenu */
-            background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+            color: #333;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 10px 15px;
             border-radius: 25px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -219,14 +247,13 @@
         }
         .user-info i {
             font-size: 1.2rem;
-            color: #4CAF50; /* Couleur de l'icône */
+            color: #4CAF50;
         }
     </style>
 </head>
 <body>
 <!-- Sidebar -->
 <div class="sidebar">
-    <!-- Image en haut de la sidebar -->
     <img src="https://s1.qwant.com/thumbr/474x474/a/1/ed68f387a6a88993c730cd6d141c853ec51a7ec019335c6767658b4ccdd786/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.kP8qeW3CnlWEScm93TjSOQHaHa%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo de l'école">
     <a href="/">Accueil</a>
     <a href="/dashboard">Statistiques</a>
@@ -234,15 +261,17 @@
     <a href="/etudiants">Étudiants</a>
     <a href="/utilisateurs">Utilisateurs</a>
     <form th:action="@{/logout}" method="post">
-        <button style="background-color: rgba(0, 0, 0, 0.3);
-                border-radius: 5px;
-                transition: background-color 0.3s;"  type="submit">Deconnexion</button>
+        <button style="background-color: rgba(0, 0, 0, 0.3); border-radius: 5px; transition: background-color 0.3s;" type="submit">Deconnexion</button>
     </form>
 </div>
-
+<div class="theme-toggle">
+    <button id="themeToggle">
+        <i class="fas fa-moon"></i> Thème sombre
+    </button>
+</div>
 <!-- En-tête utilisateur -->
 <div class="user-info">
-    <i class="fas fa-user-circle"></i> <!-- Icône Font Awesome pour l'utilisateur -->
+    <i class="fas fa-user-circle"></i>
     <span th:text="${userName}"></span>
 </div>
 
@@ -252,16 +281,21 @@
     <div class="btn">
         <a href="/etudiants/add" class="button">Ajouter un Étudiant</a>
         <div class="download-buttons">
-            <a th:href="@{/etudiants/downloadPDF}">Télécharger PDF</a>
-            <a th:href="@{/etudiants/downloadEXCEL}">Télécharger Excel</a>
+            <a th:href="@{/etudiants/downloadPDF}">
+                <i class="fas fa-file-pdf"></i> Télécharger PDF
+            </a>
+            <a th:href="@{/etudiants/downloadEXCEL}">
+                <i class="fas fa-file-excel"></i> Télécharger Excel
+            </a>
         </div>
     </div>
 
-    <form class="search-form" th:action="@{/etudiants/search}" method="get">
-        <input type="text" name="name" placeholder="Nom">
-        <input type="text" name="email" placeholder="Email">
-        <input type="text" name="code" placeholder="Code étudiant">
-        <select name="sort">
+    <!-- Formulaire de recherche -->
+    <form class="search-form" id="searchForm">
+        <input type="text" id="searchName" name="name" placeholder="Nom">
+        <input type="text" id="searchEmail" name="email" placeholder="Email">
+        <input type="text" id="searchCode" name="code" placeholder="Code étudiant">
+        <select name="sort" id="searchSort">
             <option value="">Aucun</option>
             <option value="nom">Nom</option>
             <option value="nom_desc">Nom (décroissant)</option>
@@ -272,6 +306,8 @@
         </select>
         <button type="submit">Rechercher</button>
     </form>
+
+    <!-- Tableau des étudiants -->
     <table>
         <thead>
         <tr>
@@ -307,8 +343,39 @@
     </table>
 </div>
 
+<!-- Scripts JavaScript -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Script pour la recherche dynamique -->
+<script>
+    // Fonction pour effectuer la recherche dynamique
+    function performSearch() {
+        const name = document.getElementById('searchName').value;
+        const email = document.getElementById('searchEmail').value;
+        const code = document.getElementById('searchCode').value;
+        const sort = document.getElementById('searchSort').value;
+
+        // Envoyer une requête AJAX pour récupérer les résultats
+        fetch(`/etudiants/search?name=${name}&email=${email}&code=${code}&sort=${sort}`)
+            .then(response => response.text())
+            .then(data => {
+                // Mettre à jour le tableau avec les nouveaux résultats
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data, 'text/html');
+                const newTableBody = doc.querySelector('table tbody');
+                document.querySelector('table tbody').innerHTML = newTableBody.innerHTML;
+            })
+            .catch(error => console.error('Erreur lors de la recherche :', error));
+    }
+
+    // Écouter les changements dans les champs de recherche
+    document.getElementById('searchName').addEventListener('input', performSearch);
+    document.getElementById('searchEmail').addEventListener('input', performSearch);
+    document.getElementById('searchCode').addEventListener('input', performSearch);
+    document.getElementById('searchSort').addEventListener('change', performSearch);
+</script>
+<script src="/theme.js"></script>
 </body>
 </html>

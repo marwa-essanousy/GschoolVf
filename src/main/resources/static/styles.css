@@ -1,0 +1,77 @@
+/* Styles pour le bouton de bascule de thème */
+.theme-toggle {
+    position: fixed; /* Fixe le bouton en haut à droite */
+    top: 15px;
+    left: 290px;
+    z-index: 1000; /* Assure que le bouton est au-dessus des autres éléments */
+}
+
+#themeToggle {
+    background-color: #4CAF50; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espace entre l'icône et le texte */
+}
+
+#themeToggle:hover {
+    background-color: #45a049; /* Couleur de fond au survol */
+}
+/* Thème clair (par défaut) */
+body.light-theme {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.light-theme .sidebar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.light-theme .container {
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Thème sombre */
+body.dark-theme {
+    background-color: #1e1e1e;
+    color: #f4f4f9;
+}
+
+.dark-theme .sidebar {
+    background-color: #333;
+    color: #f4f4f9;
+}
+
+.dark-theme .container {
+    background-color: #2d2d2d;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme table {
+    background-color: #2d2d2d;
+    color: #f4f4f9;
+}
+
+.dark-theme table th {
+    background-color: #444;
+    color: #f4f4f9;
+}
+
+.dark-theme table td {
+    background-color: #3d3d3d;
+}
+
+.dark-theme table tr:nth-child(even) td {
+    background-color: #444;
+}
+
+.dark-theme table tr:hover td {
+    background-color: #555;
+}
