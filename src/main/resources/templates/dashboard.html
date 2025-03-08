@@ -32,7 +32,9 @@
             height: 100vh;
             color: white;
         }
-
+        .sidebar a i {
+            margin-right: 10px;
+        }
         .sidebar img {
             width: 100px;
             border-radius: 50%;
@@ -61,13 +63,11 @@
             border-radius: 5px;
         }
 
-        /* Main content */
         .main-content {
             margin-left: 250px;
             padding: 20px;
             margin-top: 45px;
         }
-
         /* Style du titre */
         .chart-title {
             font-size: 1.5rem;
@@ -83,7 +83,6 @@
             justify-content: center;
             align-items: center;
         }
-
         #myChart, #myPieChart {
             width: 48% !important;
             height: 300px !important;
@@ -91,7 +90,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         /* En-tête utilisateur */
         .user-info {
             position: fixed;
@@ -108,11 +106,9 @@
             border-radius: 25px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
         .user-info span {
             font-weight: bold;
         }
-
         .user-info i {
             font-size: 1.2rem;
             color: #4CAF50;
@@ -124,18 +120,51 @@
 <div class="sidebar">
     <!-- Image en haut de la sidebar -->
     <img src="https://s1.qwant.com/thumbr/474x474/a/1/ed68f387a6a88993c730cd6d141c853ec51a7ec019335c6767658b4ccdd786/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.kP8qeW3CnlWEScm93TjSOQHaHa%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo de l'école">
-    <a href="/">Accueil</a>
-    <a href="/dashboard">Statistiques</a>
-    <a href="/filieres">Filières</a>
-    <a href="/etudiants">Étudiants</a>
-    <a href="/utilisateurs">Utilisateurs</a>
+
+    <!-- Accueil -->
+    <a href="/">
+        <i class="fas fa-house"></i> Accueil
+    </a>
+
+    <!-- Statistiques -->
+    <a href="/dashboard">
+        <i class="fas fa-chart-line"></i> Statistiques
+    </a>
+
+    <a href="/filieres">
+        <i class="fas fa-graduation-cap"></i> Filières
+    </a>
+
+    <!-- Étudiants -->
+    <a href="/etudiants">
+        <i class="fas fa-users"></i> Étudiants
+    </a>
+
+    <!-- Utilisateurs -->
+    <a href="/utilisateurs">
+        <i class="fas fa-user-cog"></i> Utilisateurs
+    </a>
+
+    <!-- Sélecteur de thème -->
+    <a href="#" id="themeSelector">
+        <i class="fas fa-palette"></i> Thème
+    </a>
+
+    <!-- Menu déroulant pour choisir le thème (caché par défaut) -->
+    <div id="themeDropdown" class="theme-dropdown">
+        <a href="#" data-theme="light">Thème clair</a>
+        <a href="#" data-theme="dark">Thème sombre</a>
+        <a href="#" data-theme="blue">Thème bleu</a>
+        <a href="#" data-theme="red">Thème rouge</a>
+    </div>
+
+    <!-- Déconnexion -->
     <form th:action="@{/logout}" method="post">
-        <button style="background-color: rgba(0, 0, 0, 0.3);
-                border-radius: 5px;
-                transition: background-color 0.3s;"  type="submit">Deconnexion</button>
+        <button style="background-color: rgba(0, 0, 0, 0.3); border-radius: 5px; transition: background-color 0.3s;" type="submit">
+            <i class="fas fa-right-from-bracket"></i> Déconnexion
+        </button>
     </form>
 </div>
-
 
 <div class="theme-toggle">
     <button id="themeToggle">

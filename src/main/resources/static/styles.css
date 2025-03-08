@@ -1,26 +1,89 @@
-/* Styles pour le bouton de bascule de thème */
-.theme-toggle {
-    position: fixed; /* Fixe le bouton en haut à droite */
-    top: 15px;
-    left: 290px;
-    z-index: 1000; /* Assure que le bouton est au-dessus des autres éléments */
+/*.theme-selector {*/
+/*    position: fixed;*/
+/*    top: 15px;*/
+/*    left: 300px;*/
+/*}*/
+/* Styles pour le menu déroulant des thèmes */
+.theme-dropdown {
+    display: none; /* Caché par défaut */
+    background-color: #4CAF50;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
 }
 
-#themeToggle {
-    background-color: #4CAF50; /* Couleur de fond */
-    color: white; /* Couleur du texte */
-    padding: 10px 20px;
+.theme-dropdown a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.theme-dropdown a:hover {
+    background-color: #45a049;
+    border-radius: 5px;
+}
+/* Styles pour le sélecteur de thème dans la sidebar */
+.sidebar #themeSelector {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+}
+
+.sidebar #themeSelector:hover {
+    background-color: #45a049;
+    border-radius: 5px;
+}
+
+.sidebar #themeSelector i {
+    margin-right: 10px; /* Espace entre l'icône et le texte */
+}
+
+/* Styles pour le sélecteur de thème dans la sidebar */
+
+.sidebar .theme-selector {
+    margin: 10px 0;
+}
+
+.sidebar .theme-selector label {
+    display: block;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.sidebar .theme-selector select {
+    width: 100%;
+    padding: 10px;
     border: none;
     border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Espace entre l'icône et le texte */
+    transition: background-color 0.3s;
 }
 
-#themeToggle:hover {
-    background-color: #45a049; /* Couleur de fond au survol */
+.sidebar .theme-selector select:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .theme-selector select:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 /* Thème clair (par défaut) */
 body.light-theme {
@@ -53,25 +116,84 @@ body.dark-theme {
     background-color: #2d2d2d;
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
 }
-
-.dark-theme table {
+/* Styles pour les tables en mode sombre */
+body.dark-theme table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
     background-color: #2d2d2d;
     color: #f4f4f9;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.dark-theme table th {
+body.dark-theme table th,
+body.dark-theme table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #444;
+}
+
+body.dark-theme table th {
     background-color: #444;
     color: #f4f4f9;
+    font-weight: bold;
 }
 
-.dark-theme table td {
+body.dark-theme table td {
     background-color: #3d3d3d;
 }
 
-.dark-theme table tr:nth-child(even) td {
+body.dark-theme table tr:nth-child(even) td {
     background-color: #444;
 }
 
-.dark-theme table tr:hover td {
+body.dark-theme table tr:hover td {
     background-color: #555;
+}
+
+/* Styles pour les icônes et boutons dans les tables en mode sombre */
+body.dark-theme table .actions a {
+    color: #4CAF50;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+body.dark-theme table .actions a:hover {
+    color: #45a049;
+    text-decoration: underline;
+}
+
+/* Thème bleu */
+body.blue-theme {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+}
+
+.blue-theme .sidebar {
+    background-color: #1976d2;
+    color: white;
+}
+
+.blue-theme .container {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Thème rouge */
+body.red-theme {
+    background-color: #ffebee;
+    color: #b71c1c;
+}
+
+.red-theme .sidebar {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.red-theme .container {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

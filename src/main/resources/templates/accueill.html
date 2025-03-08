@@ -11,33 +11,29 @@
     <link rel="stylesheet" href="/styles.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f8f9fa;
             color: #333;
         }
-
-        /* Sidebar */
         .sidebar {
             position: fixed;
             top: 0;
             left: 0;
-            width: 250px; /* Largeur de 250px */
-            background-color: #4CAF50; /* Couleur de fond */
+            width: 250px;
+            background-color: #4CAF50;
             padding: 20px;
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            height: 100vh; /* Prend toute la hauteur de la page */
+            height: 100vh;
             color: white;
         }
-
         .sidebar img {
-            width: 100px; /* Taille réduite pour le logo */
+            width: 100px;
             border-radius: 50%;
             display: block;
-            margin: 0 auto 20px; /* Centrer le logo et ajouter une marge en bas */
+            margin: 0 auto 20px;
         }
-
         .sidebar a, .sidebar button {
             color: white;
             text-decoration: none;
@@ -45,7 +41,7 @@
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
-            font-weight: bold; /* Texte en gras pour correspondre à la page Filières */
+            font-weight: bold;
             transition: background-color 0.3s;
             background: none;
             border: none;
@@ -53,40 +49,36 @@
             width: 100%;
             cursor: pointer;
         }
-
-
-
-
+        .sidebar a i {
+            margin-right: 10px;
+        }
         .sidebar a:hover, .sidebar button:hover {
             background-color: #45a049;
             border-radius: 5px;
         }
 
+
         /* Main content */
         .main-content {
-            margin-left: 250px; /* Ajusté pour correspondre à la largeur de la sidebar */
+            margin-left: 250px;
             padding: 20px;
             margin-top: 45px;
         }
-
         .hero {
             background-color: #17a2b8;
             color: white;
             padding: 60px 20px;
             text-align: center;
         }
-
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
         }
-
         .hero p {
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto;
         }
-
         .features {
             display: flex;
             justify-content: space-around;
@@ -94,7 +86,6 @@
             gap: 20px;
             margin-top: 20px;
         }
-
         .feature {
             background-color: white;
             padding: 20px;
@@ -103,77 +94,95 @@
             text-align: center;
             flex: 1 1 300px;
         }
-
         .feature i {
             font-size: 2rem;
             color: #4CAF50;
             margin-bottom: 10px;
         }
-
         .feature h2 {
             font-size: 1.5rem;
             margin-bottom: 10px;
             color: #17a2b8;
         }
-
         .feature p {
             font-size: 1rem;
             color: #555;
         }
-
-        /* En-tête utilisateur */
         .user-info {
-            position: fixed; /* Fixe l'en-tête utilisateur en haut à droite */
+            position: fixed;
             top: 10px;
             right: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
             font-size: 16px;
-            color: #333; /* Couleur du texte */
-            z-index: 1000; /* Assure que l'en-tête est au-dessus du contenu */
-            background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+            color: #333;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 10px 15px;
             border-radius: 25px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
         .user-info span {
             font-weight: bold;
         }
-
         .user-info i {
             font-size: 1.2rem;
-            color: #4CAF50; /* Couleur de l'icône */
+            color: #4CAF50;
         }
     </style>
 </head>
 <body>
-
-<div class="theme-toggle">
-    <button id="themeToggle">
-        <i class="fas fa-moon"></i> Thème sombre
-    </button>
-</div>
-<!-- Sidebar -->
 <div class="sidebar">
     <!-- Image en haut de la sidebar -->
-    <img src="https://s1.qwant.com/thumbr/474x474/a/1/ed68f387a6a88993c730cd6d141c853ec51a7ec019335c6767658b4ccdd786/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.kP8qeW3CnlWEScm93TjSOQHaHa%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo de l'école"> <!-- Remplacez par le chemin de votre image -->
-    <a href="/">Accueil</a>
-    <a href="/dashboard">Statistiques</a>
-    <a href="/filieres">Filières</a>
-    <a href="/etudiants">Étudiants</a>
-    <a href="/utilisateurs">Utilisateurs</a>
+    <img src="https://s1.qwant.com/thumbr/474x474/a/1/ed68f387a6a88993c730cd6d141c853ec51a7ec019335c6767658b4ccdd786/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.kP8qeW3CnlWEScm93TjSOQHaHa%26pid%3DApi&q=0&b=1&p=0&a=0" alt="Logo de l'école">
+
+    <!-- Accueil -->
+    <a href="/">
+        <i class="fas fa-house"></i> Accueil
+    </a>
+
+    <!-- Statistiques -->
+    <a href="/dashboard">
+        <i class="fas fa-chart-line"></i> Statistiques
+    </a>
+
+    <a href="/filieres">
+        <i class="fas fa-graduation-cap"></i> Filières
+    </a>
+
+    <!-- Étudiants -->
+    <a href="/etudiants">
+        <i class="fas fa-users"></i> Étudiants
+    </a>
+
+    <!-- Utilisateurs -->
+    <a href="/utilisateurs">
+        <i class="fas fa-user-cog"></i> Utilisateurs
+    </a>
+
+    <!-- Sélecteur de thème -->
+    <a href="#" id="themeSelector">
+        <i class="fas fa-palette"></i> Thème
+    </a>
+
+    <!-- Menu déroulant pour choisir le thème (caché par défaut) -->
+    <div id="themeDropdown" class="theme-dropdown">
+        <a href="#" data-theme="light">Thème clair</a>
+        <a href="#" data-theme="dark">Thème sombre</a>
+        <a href="#" data-theme="blue">Thème bleu</a>
+        <a href="#" data-theme="red">Thème rouge</a>
+    </div>
+
+    <!-- Déconnexion -->
     <form th:action="@{/logout}" method="post">
-        <button style="background-color: rgba(0, 0, 0, 0.3);
-                border-radius: 5px;
-                transition: background-color 0.3s;"  type="submit">Deconnexion</button>
+        <button style="background-color: rgba(0, 0, 0, 0.3); border-radius: 5px; transition: background-color 0.3s;" type="submit">
+            <i class="fas fa-right-from-bracket"></i> Déconnexion
+        </button>
     </form>
 </div>
-
-<!-- En-tête utilisateur -->
 <div class="user-info">
-    <i class="fas fa-user-circle"></i> <!-- Icône Font Awesome pour l'utilisateur -->
+    <i class="fas fa-user-circle"></i>
     <span th:text="${userName}"></span>
 </div>
 
@@ -186,24 +195,23 @@
 
     <div class="features">
         <div class="feature">
-            <i class="fas fa-graduation-cap"></i> <!-- Icône pour Gestion des Filières -->
+            <i class="fas fa-graduation-cap"></i>
             <h2>Gestion des Filières</h2>
             <p>Ajoutez, modifiez ou supprimez des filières en quelques clics.</p>
         </div>
         <div class="feature">
-            <i class="fas fa-user-graduate"></i> <!-- Icône pour Gestion des Étudiants -->
+            <i class="fas fa-user-graduate"></i>
             <h2>Gestion des Étudiants</h2>
             <p>Inscrivez et suivez les étudiants dans leurs parcours académiques.</p>
         </div>
         <div class="feature">
-            <i class="fas fa-chart-line"></i> <!-- Icône pour Rapports et Statistiques -->
+            <i class="fas fa-chart-line"></i>
             <h2>Rapports et Statistiques</h2>
             <p>Consultez des rapports détaillés pour une meilleure prise de décision.</p>
         </div>
     </div>
 </div>
 
-<!-- Add Bootstrap JS and dependencies -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
