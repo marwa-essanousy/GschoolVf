@@ -1,30 +1,97 @@
-/*.theme-selector {*/
-/*    position: fixed;*/
-/*    top: 15px;*/
-/*    left: 300px;*/
-/*}*/
+/* Hover pour les éléments de la liste "Thème" */
+
+/* Thème clair */
+body.light-theme .sidebar .theme-dropdown a:hover {
+    background-color: #45a049; /* Vert clair */
+    border-radius: 5px;
+}
+
+/* Thème sombre */
+body.dark-theme .sidebar .theme-dropdown a:hover {
+    background-color: #444; /* Gris foncé */
+    border-radius: 5px;
+}
+
+/* Thème bleu */
+body.blue-theme .sidebar .theme-dropdown a:hover {
+    background-color: #1565c0; /* Bleu foncé */
+    border-radius: 5px;
+}
+
+/* Thème rouge */
+body.red-theme .sidebar .theme-dropdown a:hover {
+    background-color: #b71c1c; /* Rouge foncé */
+    border-radius: 5px;
+}
+
+/* Hover pour le thème sombre */
+body.dark-theme .sidebar a:hover {
+    background-color: #444; /* Couleur plus claire pour le hover */
+    border-radius: 5px;
+    color: #ffffff; /* Texte blanc */
+}
+
+/* Hover pour le thème bleu */
+body.blue-theme .sidebar a:hover {
+    background-color: #0d47a1; /* Couleur bleue plus foncée */
+    border-radius: 5px;
+    color: #ffffff; /* Texte blanc */
+}
+
+/* Hover pour le thème rouge */
+body.red-theme .sidebar a:hover {
+    background-color: #c62828; /* Couleur rouge plus foncée */
+    border-radius: 5px;
+    color: #ffffff; /* Texte blanc */
+}
+
 /* Styles pour le menu déroulant des thèmes */
 .theme-dropdown {
     display: none; /* Caché par défaut */
-    background-color: #4CAF50;
-    border-radius: 5px;
     padding: 10px;
     margin-top: 5px;
 }
 
-.theme-dropdown a {
+/* Thème clair */
+body.light-theme .sidebar .theme-dropdown {
+    background-color: #4CAF50; /* Vert pour le thème clair */
     color: white;
-    text-decoration: none;
-    display: block;
-    padding: 8px;
-    font-size: 14px;
-    transition: background-color 0.3s;
 }
 
-.theme-dropdown a:hover {
+body.light-theme .sidebar .theme-dropdown a:hover {
     background-color: #45a049;
-    border-radius: 5px;
 }
+
+/* Thème sombre */
+body.dark-theme .sidebar .theme-dropdown {
+    background-color: #333; /* Sombre pour le thème sombre */
+    color: white;
+}
+
+body.dark-theme .sidebar .theme-dropdown a:hover {
+    background-color: #444;
+}
+
+/* Thème bleu */
+body.blue-theme .sidebar .theme-dropdown {
+    background-color: #1976d2; /* Bleu pour le thème bleu */
+    color: white;
+}
+
+body.blue-theme .sidebar .theme-dropdown a:hover {
+    background-color: #1565c0;
+}
+
+/* Thème rouge */
+body.red-theme .sidebar .theme-dropdown {
+    background-color: #d32f2f; /* Rouge pour le thème rouge */
+    color: white;
+}
+
+body.red-theme .sidebar .theme-dropdown a:hover {
+    background-color: #b71c1c;
+}
+
 /* Styles pour le sélecteur de thème dans la sidebar */
 .sidebar #themeSelector {
     color: white;
@@ -51,40 +118,6 @@
     margin-right: 10px; /* Espace entre l'icône et le texte */
 }
 
-/* Styles pour le sélecteur de thème dans la sidebar */
-
-.sidebar .theme-selector {
-    margin: 10px 0;
-}
-
-.sidebar .theme-selector label {
-    display: block;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.sidebar .theme-selector select {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.sidebar .theme-selector select:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.sidebar .theme-selector select:focus {
-    outline: none;
-    background-color: rgba(255, 255, 255, 0.2);
-}
 /* Thème clair (par défaut) */
 body.light-theme {
     background-color: #f4f4f9;
@@ -116,6 +149,7 @@ body.dark-theme {
     background-color: #2d2d2d;
     box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
 }
+
 /* Styles pour les tables en mode sombre */
 body.dark-theme table {
     width: 100%;
